@@ -28,7 +28,13 @@
 		[tiles release];
 	[super dealloc];
 }
-- (id)initWithImageNamed:(NSString*)aImageFileName name:(NSString*)aTileSetName tileSetID:(int)tsID firstGID:(int)aFirstGlobalID tileSize:(CGSize)aTileSize spacing:(int)aSpacing margin:(int)aMargin {
+- (id)initWithImageNamed:(NSString*)aImageFileName 
+                    name:(NSString*)aTileSetName 
+               tileSetID:(int)tsID 
+                firstGID:(int)aFirstGlobalID 
+                tileSize:(CGSize)aTileSize 
+                 spacing:(int)aSpacing 
+                  margin:(int)aMargin {
 	self = [super init];
 	if (self != nil) {
 		

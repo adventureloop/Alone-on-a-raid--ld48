@@ -21,14 +21,14 @@
 @interface TileMap (Private)
 
 // Parses the XML read from the tiled tmx file.
-- (void)parseMapFileTBXML:(int)tbXML;
+- (void)parseMapFile:(NSString *)fileName;
 
 // Using the parsed tilemap data, generate a VBO that contains information on each tile
 // that is present in that layer.  These VBOs are then used to render layers as requested
 - (void)createLayerTileImages;
 
 // Parse the objects that have been defined on the map
-- (void)parseMapObjects:(int)aTmxXML;
+- (void)parseMapObjects:(int)value;
 @end
 
 #pragma mark -
@@ -56,7 +56,7 @@
     [super dealloc];
 }
 
-- (id)initWithFileName:(NSString*)aTiledFile fileExtension:(NSString*)aFileExtension {
+- (id)initWithFileName:(NSString*)aTiledFile{
     
     self = [super init];
     if (self != nil) {
@@ -71,8 +71,19 @@
         mapProperties = [[NSMutableDictionary alloc] init];
         objectGroups = [[NSMutableDictionary alloc] init];
         
+        tileWidth = 64;
+        tileHeight = 64;
+        
+        currentTileSet = [[TileSet alloc]initWithImageNamed:@"TestSprite.png" 
+                                                       name:@"Main tile set" 
+                                                  tileSetID:0 firstGID:0 
+                                                   tileSize:CGSizeMake(tileWidth,tileHeight) 
+                                                    spacing:0
+                                                     margin:0];
+        [tileSets addObject:currentTileSet];
         
         //Parse tilemap 
+        [self parseMapFile:aTiledFile];
     }
     
     // Create an empty TexturedColoredQuad that can be used to check for other empty TexturedColoredQuads
@@ -81,7 +92,9 @@
     
     // Create tile images for each layer in the tilemap.  These will then be used when we render
     // a layer.
-    [self createLayerTileImages];
+    
+    if([tileSets count] > 0)
+        [self createLayerTileImages];
     
     colorFilter = Color4fOnes;
     
@@ -209,7 +222,8 @@
                     if (tileID > -1) {
                         // Get the sprite used at this tile locaiton
                         SpriteSheet *tileSprites = [tileSet tiles];
-                        Image *tileImage = [tileSprites spriteImageAtCoords:CGPointMake([tileSet getTileX:tileID], [tileSet getTileY:tileID])];
+                        Image *tileImage = [tileSprites spriteImageAtCoords:CGPointMake([tileSet getTileX:tileID],
+                                                                                        [tileSet getTileY:tileID])];
                         
                         // Add the tile images ImageDetails to the layer
                         [layer addTileImageAt:CGPointMake(mapTileX, mapTileY) imageDetails:tileImage.imageDetails];
@@ -226,10 +240,69 @@
     }
 }
 
-- (void)parseMapFileTBXML:(int)tbXML {
- }
 
-- (void)parseMapObjects:(int)aTmxXML {
+#pragma mark -Parsing Map File
+-(void)parseMapFile:(NSString *)fileName
+{
+    //Get the correct path
+    NSString *filename = [fileName stringByDeletingPathExtension];
+	NSString *filetype = [fileName pathExtension];
+	NSString *path = [[NSBundle mainBundle] pathForResource:filename ofType:filetype];
+    
+    
+    // First get the image into your data buffer
+    CGImageRef image = [[UIImage imageWithContentsOfFile:path ]  CGImage];
+    NSUInteger width = CGImageGetWidth(image);
+    NSUInteger height = CGImageGetHeight(image);
+    
+    tileHeight = height;
+    tileWidth = width;
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = malloc(height * width * 4);
+    
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height),image);
+    CGContextRelease(context);
+    
+    layerName = @"Main Layer";
+    layerWidth = width;
+    layerHeight = height;
+    
+
+    mapWidth = 16;
+    mapHeight = 16;
+    
+    currentLayer = [[Layer alloc] initWithName:layerName layerID:0 layerWidth:layerWidth layerHeight:layerHeight];
+    
+    int x = 0;
+    int y = 0;
+    // Now your rawData contains the image data in the RGBA8888 pixel format.
+    int byteIndex = 0;
+    
+    byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+    for(y = 0;y < height;y++) {
+        for(x = 0;x < width;x++) {
+            byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+            NSLog(@"\t%d \t%d\t r:%d\tg:%d\tb:%d\ta:%d",x,y,rawData[byteIndex],
+                  rawData[byteIndex + 1],
+                  rawData[byteIndex + 2],
+                  rawData[byteIndex + 3]);
+            TileSet *tileSet = [self tileSetWithGlobalID:rawData[byteIndex]];
+            
+            [currentLayer addTileAt:CGPointMake((float)x, (layerHeight - 1 ) - (float)y) 
+                            tileSetID:[tileSet tileSetID] 
+                             tileID:rawData[byteIndex]
+                           globalID:rawData[byteIndex] 
+                              value:-1];
+        }
+    }
+    [layers addObject:currentLayer];
 }
-
 @end

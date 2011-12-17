@@ -77,7 +77,7 @@
 @property (nonatomic, assign) Color4f colorFilter;
 
 // Designated selector that loads the tile map details from the supplied file name and extension
-- (id)initWithFileName:(NSString*)aTiledFile fileExtension:(NSString*)aFileExtension;
+- (id)initWithFileName:(NSString*)aTiledFile;
 
 // Renders the tilemap layer provided from point {0, 0}
 - (void)renderLayer:(int)aLayerIndex mapx:(int)aMapx mapy:(int)aMapy width:(int)aWidth height:(int)aHeight useBlending:(BOOL)aUseBlending;

@@ -35,7 +35,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(TextureManager);
     // Try to get a texture from cachedTextures with the supplied key.
     Texture2D *cachedTexture;
 
-	if(cachedTexture = [cachedTextures objectForKey:aName]) {
+	if((cachedTexture = [cachedTextures objectForKey:aName])) {
 		return cachedTexture;
 	}
 	
