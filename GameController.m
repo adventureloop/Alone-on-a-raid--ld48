@@ -83,7 +83,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(GameController);
 #pragma mark -
 #pragma mark Accelerometer
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration 
+{
     
 }
 

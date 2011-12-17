@@ -187,4 +187,25 @@
     [super dealloc];
 }
 
+#pragma mark - Handle Touches
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[sharedGameController currentScene]touchesBegan:touches withEvent:event view:self];
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[sharedGameController currentScene] touchesMoved:touches withEvent:event view:self];
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[sharedGameController currentScene] touchesEnded:touches withEvent:event view:self];
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [[sharedGameController currentScene] touchesCancelled:touches withEvent:event view:self];
+}
+
 @end
