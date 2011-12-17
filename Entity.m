@@ -10,4 +10,22 @@
 
 @implementation Entity
 
+
+-(id)initWithTileLocation:(CGPoint)tileLoc type:(int)aType
+{
+    if(self = [super init]) {
+        type = aType;
+        tileLocation = tileLoc;
+    }
+    return self;
+}
+
+-(void)render{}
+-(void)updateWithDelta:(float)aDelta scene:(AbstractScene *)scene {}
+-(void)checkForCollisionWithEntity:(AbstractScene *)entity{}
+
+-(CGRect)collisionBounds
+{
+    return CGRectMake(tileLocation.x, tileLocation.y, width, height);
+}
 @end

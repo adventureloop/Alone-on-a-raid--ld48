@@ -7,6 +7,7 @@
 //
 
 #import "AbstractScene.h"
+#import "TileMap.h"
 
 @class Image;
 @class ImageRenderManager;
@@ -20,6 +21,8 @@
 	CGPoint velocity;
 	CGPoint point;
     CGPoint dest;
+    
+    TileMap *tileMap;
 }
 
 @end

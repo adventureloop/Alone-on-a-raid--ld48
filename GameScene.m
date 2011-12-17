@@ -6,6 +6,7 @@
 //  Copyright 2009 Michael Daley. All rights reserved.
 //
 
+#import "Global.h"
 #import "GameScene.h"
 #import "Image.h"
 #import "ImageRenderManager.h"
@@ -29,8 +30,12 @@
 		// Set the velocity of the moving image.  This will cause the image to move 50 pixels per second
 		velocity = CGPointMake(50, 50);
 		// Set the initial position
-		point = CGPointMake(160, 240);
-        dest = CGPointMake(160, 240);
+		point = CGPointMake(0, 0);
+        dest = CGPointMake(0, 0);
+        
+        tileMap = [[TileMap alloc] initWithFileName:@"TileMap.png"];
+        
+        myImage.rotation = myImage.rotation = -90;
 	}
 	return self;
 }
@@ -51,16 +56,30 @@
 
 - (void)renderScene {
     
-	// Render myImage based on the point calculated in the update method
-	[myImage renderCenteredAtPoint:point];
-    myImage.rotation = myImage.rotation = -90;
+    
 	// Ask the ImageRenderManager to render the images on its render queue
+    [tileMap renderLayer:0 mapx:0 mapy:0 width:8 height:8 useBlending:YES];
+    
+	// Render myImage based on the point calculated in the update method
+	[myImage renderCenteredAtPoint:tileMapPositionToPixelPosition(point)];
+
+    glClear(GL_COLOR_BUFFER_BIT);
+    glPushMatrix();
+    glTranslatef(100 - point.x,250 - point.y, 0);
+
+    
 	[sharedImageRenderManager renderImages];
+        glPopMatrix();
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event view:(UIView *)aView
 {
     
+    for(UITouch *touch in touches) {
+        dest = [touch locationInView:aView];
+        
+        dest.y = 480 - dest.y;
+    }
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event view:(UIView *)aView

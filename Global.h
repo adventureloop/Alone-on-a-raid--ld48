@@ -48,3 +48,9 @@ static inline Scale2f Scale2fMake(float x, float y) {
 static inline Color4f Color4fMake(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) {
 	return (Color4f) {red, green, blue, alpha};
 }
+
+static inline 
+CGPoint tileMapPositionToPixelPosition(CGPoint tmp) 
+{
+	return CGPointMake((int)(tmp.x * kTile_Width) + 40, (int)(tmp.y * kTile_Height) + 40);
+}
