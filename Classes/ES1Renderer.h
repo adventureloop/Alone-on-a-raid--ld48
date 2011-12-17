@@ -31,5 +31,5 @@
 
 - (void) render;
 - (BOOL) resizeFromLayer:(CAEAGLLayer *)layer;
-
+-(void)orientationChanged:(NSNotificationCenter *)notification;
 @end

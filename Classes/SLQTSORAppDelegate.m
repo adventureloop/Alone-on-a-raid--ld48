@@ -17,6 +17,7 @@
 - (void) applicationDidFinishLaunching:(UIApplication *)application
 {
 	[glView startAnimation];
+    [[UIDevice currentDevice]beginGeneratingDeviceOrientationNotifications];
 }
 
 - (void) applicationWillResignActive:(UIApplication *)application

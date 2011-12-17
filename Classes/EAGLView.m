@@ -156,6 +156,8 @@
 		
 		// Setup the lastTime ivar
         lastTime = CFAbsoluteTimeGetCurrent();
+        
+        
 	}
 }
 

@@ -43,6 +43,13 @@
         
         // Grab a reference to the shared game controller
         sharedGameController = [GameController sharedGameController];
+        
+        //Received rotation messages
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(orientationChanged:) 
+                                                     name:@"UIDeviceOrientationDidChangeNotification" 
+                                                   object:nil];
+        
 	}
 	
 	return self;
@@ -52,12 +59,14 @@
 
     // Clear the color buffer which clears the screen
     glClear(GL_COLOR_BUFFER_BIT);
-
+    
 	// Ask the game controller to render the current scene
     [sharedGameController renderCurrentScene];
     
 	// Present the renderbuffer to the screen
     [context presentRenderbuffer:GL_RENDERBUFFER_OES];
+    
+    
 }
 
 - (BOOL) resizeFromLayer:(CAEAGLLayer *)layer {	
@@ -148,6 +157,19 @@
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glEnable(GL_BLEND);
+}
+
+
+-(void)orientationChanged:(NSNotificationCenter *)notification
+{
+    UIDeviceOrientation orientation = [[UIDevice currentDevice]orientation];
+    
+    if(orientation == UIDeviceOrientationLandscapeRight) {
+        glLoadIdentity();
+        glTranslatef(160, 240, 0);
+        glRotatef(90, 0, 0, 1);
+        glTranslatef(-240, -160, 0);
+    }
 }
 
 @end
