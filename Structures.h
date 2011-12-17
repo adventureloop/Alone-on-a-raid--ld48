@@ -57,5 +57,5 @@ typedef struct {
 #define kTile_Width 64
 #define kTile_Height 64
 
-#define kMax_Map_Width 200
-#define kMax_Map_Height 200
+#define kMax_Map_Width 32
+#define kMax_Map_Height 32

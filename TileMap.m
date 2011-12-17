@@ -74,7 +74,7 @@
         tileWidth = 64;
         tileHeight = 64;
         
-        currentTileSet = [[TileSet alloc]initWithImageNamed:@"TestSprite.png" 
+        currentTileSet = [[TileSet alloc]initWithImageNamed:@"TileSet.png" 
                                                        name:@"Main tile set" 
                                                   tileSetID:0 firstGID:0 
                                                    tileSize:CGSizeMake(tileWidth,tileHeight) 

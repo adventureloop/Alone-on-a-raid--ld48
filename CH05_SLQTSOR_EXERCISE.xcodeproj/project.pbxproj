@@ -25,8 +25,9 @@
 		8F362F50106D35C400AEE2AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F362F4F106D35C400AEE2AA /* CoreGraphics.framework */; };
 		8F362F60106D36A900AEE2AA /* knight.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8F362F5F106D36A900AEE2AA /* knight.gif */; };
 		8F8B68CA1049815A0016F1D0 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F8B68C91049815A0016F1D0 /* GameScene.m */; };
+		DF0C3EF2149D24F200F47137 /* TileSet.png in Resources */ = {isa = PBXBuildFile; fileRef = DF0C3EF1149D24F200F47137 /* TileSet.png */; };
 		DF14D0DC149CFAE900FBA1D2 /* TestSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = DF14D0DB149CFAE800FBA1D2 /* TestSprite.png */; };
-		DF3B2808149D1DCB00DFA9C1 /* TileSet.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3B2807149D1DCB00DFA9C1 /* TileSet.png */; };
+		DF3D7FD8149D2D800009AD6B /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3D7FD7149D2D800009AD6B /* Entity.m */; };
 		DF98C8BA149CAF9000DA2A57 /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8B9149CAF9000DA2A57 /* TileMap.m */; };
 		DF98C8BE149CC0AD00DA2A57 /* TileMap.png in Resources */ = {isa = PBXBuildFile; fileRef = DF98C8BC149CC0AD00DA2A57 /* TileMap.png */; };
 		DF98C8C2149CC23300DA2A57 /* TileSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8C1149CC23300DA2A57 /* TileSet.m */; };
@@ -71,8 +72,10 @@
 		8F362F5F106D36A900AEE2AA /* knight.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = knight.gif; sourceTree = "<group>"; };
 		8F8B68C81049815A0016F1D0 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		8F8B68C91049815A0016F1D0 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		DF0C3EF1149D24F200F47137 /* TileSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSet.png; sourceTree = "<group>"; };
 		DF14D0DB149CFAE800FBA1D2 /* TestSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TestSprite.png; sourceTree = "<group>"; };
-		DF3B2807149D1DCB00DFA9C1 /* TileSet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileSet.png; sourceTree = "<group>"; };
+		DF3D7FD6149D2D800009AD6B /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		DF3D7FD7149D2D800009AD6B /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 		DF98C8B8149CAF9000DA2A57 /* TileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
 		DF98C8B9149CAF9000DA2A57 /* TileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 		DF98C8BC149CC0AD00DA2A57 /* TileMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileMap.png; sourceTree = "<group>"; };
@@ -157,6 +160,7 @@
 				18408528104442BC005C877F /* Global Headers */,
 				8F362F5D106D367A00AEE2AA /* Game Resources */,
 				DF98C8BF149CC1D400DA2A57 /* TileManagement */,
+				DF3D7FD4149D2D5E0009AD6B /* Entities */,
 				8F362F14106D315900AEE2AA /* Game Engine */,
 				184087421044643B005C877F /* Abstract Classes */,
 				184085241044424C005C877F /* Game Controller */,
@@ -267,7 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				DF14D0DB149CFAE800FBA1D2 /* TestSprite.png */,
-				DF3B2807149D1DCB00DFA9C1 /* TileSet.png */,
+				DF0C3EF1149D24F200F47137 /* TileSet.png */,
 				DF98C8BC149CC0AD00DA2A57 /* TileMap.png */,
 				8F362F5F106D36A900AEE2AA /* knight.gif */,
 			);
@@ -281,6 +285,15 @@
 				8F8B68C91049815A0016F1D0 /* GameScene.m */,
 			);
 			name = "Game Scenes";
+			sourceTree = "<group>";
+		};
+		DF3D7FD4149D2D5E0009AD6B /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				DF3D7FD6149D2D800009AD6B /* Entity.h */,
+				DF3D7FD7149D2D800009AD6B /* Entity.m */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 		DF98C8BF149CC1D400DA2A57 /* TileManagement */ = {
@@ -348,7 +361,7 @@
 				8F362F60106D36A900AEE2AA /* knight.gif in Resources */,
 				DF98C8BE149CC0AD00DA2A57 /* TileMap.png in Resources */,
 				DF14D0DC149CFAE900FBA1D2 /* TestSprite.png in Resources */,
-				DF3B2808149D1DCB00DFA9C1 /* TileSet.png in Resources */,
+				DF0C3EF2149D24F200F47137 /* TileSet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +387,7 @@
 				DF98C8C2149CC23300DA2A57 /* TileSet.m in Sources */,
 				DF98C8C5149CC34400DA2A57 /* SpriteSheet.m in Sources */,
 				DF98C8C8149CC47400DA2A57 /* Layer.m in Sources */,
+				DF3D7FD8149D2D800009AD6B /* Entity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
