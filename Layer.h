@@ -1,33 +1,65 @@
 //
 //  Layer.h
-//  CH05_SLQTSOR_EXERCISE
+//  SLQTSOR
 //
-//  Created by Tom Jones on 17/12/2011.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Created by Michael Daley on 05/04/2009.
+//  Copyright 2009 Michael Daley. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "Structures.h"
+#import "Global.h"
 
-#define kTile_Width 32
-#define kTile_Height 32
+// Class which contains information about each layer defined within a tile map 
+// configuration file.  This class is responsbile for storing information related
+// to a layer in the tilemap and also for holding the tilemap data for each tile
+// within the defined layer
+//
+#define MAX_MAP_WIDTH 200
+#define MAX_MAP_HEIGHT 200
 
-@interface Layer : NSObject
-{
-    TexturedColoredQuad *tileImages;
-    int layerData [kTile_Width][kTile_Height][4];
+@class Image;
+
+@interface Layer : NSObject {
+	
+	int layerID;							// The layers index
+	NSString *layerName;					// The layers name
+	int layerData[MAX_MAP_WIDTH][MAX_MAP_HEIGHT][4];	// Tile data where the 3rd dimension is 
+    // index 0 = tileset, index 1 = tile id, index 2 = global id
+	int layerWidth;							// The width of the layer
+	int layerHeight;						// The height of layer layer
+	NSMutableDictionary *layerProperties;	// Layer properties
+	
+	TexturedColoredQuad *tileImages;
 }
 
-@property (assign,nonatomic) NSInteger layerID;
-@property (retain,nonatomic) NSString *name;
-@property (assign,nonatomic) NSInteger width;
-@property (assign,nonatomic) NSInteger height;
+@property(nonatomic, readonly) int layerID;
+@property(nonatomic, readonly) NSString *layerName;
+@property(nonatomic, readonly) int layerWidth;
+@property(nonatomic, readonly) int layerHeight;
+@property(nonatomic, retain) NSMutableDictionary *layerProperties;
 
--(id)initWithName:(NSString *)aName layerID:(int)aLayerID layerWidth:(int)aLayerWidth layerHeight:(int)aLayerHeight;
--(void)addTileAt:(CGPoint)aTileCoord tileSetID:(int)aTileSetID tileID:(int)aTileID globalID:(int)aGlobalID value:(int)aValue;
--(void)addTileImageAt:(CGPoint) aPoint imageDetails:(ImageDetails *)aImageDetails;
+// Designated selector which creates a new instance of the Layer class.
+- (id)initWithName:(NSString*)aName layerID:(int)aLayerID layerWidth:(int)aLayerWidth layerHeight:(int)aLayerHeight;
 
--(int)globalTileIDAtTile:(CGPoint)aTileCoord;
--(void)setValueAtTile:(CGPoint)aTileCoord value:(int)aValue;
--(TexturedColoredQuad *)titleImageAt:(CGPoint)aPoint;
+// Adds tile details to the layer at a specified location within the tile map
+- (void)addTileAt:(CGPoint)aTileCoord tileSetID:(int)aTileSetID tileID:(int)aTileID globalID:(int)aGlobalID value:(int)aValue;
+
+// Returns the tileset for a tile at a given location within this layer
+- (int)tileSetIDAtTile:(CGPoint)aTileCoord;
+
+// Returns the Global Tile ID for a tile at a given location within this layer
+- (int)globalTileIDAtTile:(CGPoint)aTileCoord;
+
+// Returns the tile id for a tile at a given location within this layer
+- (int)tileIDAtTile:(CGPoint)aTileCoord;
+
+// Sets a general purpose int value for the tile specified by the coordinates
+- (void)setValueAtTile:(CGPoint)aTileCoord value:(int)aValue;
+
+// Gets the general purpose value for the tile specified by the coordinates
+- (int)valueAtTile:(CGPoint)aTileCoord;
+
+- (void)addTileImageAt:(CGPoint)aPoint imageDetails:(ImageDetails*)aImageDetails;
+
+- (TexturedColoredQuad*)getTileImageAt:(CGPoint)aPoint;
+
 @end

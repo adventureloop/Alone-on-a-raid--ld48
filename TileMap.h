@@ -22,7 +22,7 @@
 // This class is used to read the XML output from Tiled.  It can handle multiple layers,
 // tilesets and properties on each of these. 
 //
-@interface TiledMap : NSObject {
+@interface TileMap : NSObject {
 	
 	///////////////////// Singleton managers
     GameController *sharedGameController;	// Reference to the game controller

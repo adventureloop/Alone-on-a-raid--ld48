@@ -29,6 +29,8 @@
 		DF98C8BD149CC0AD00DA2A57 /* TileSet.png in Resources */ = {isa = PBXBuildFile; fileRef = DF98C8BB149CC0AD00DA2A57 /* TileSet.png */; };
 		DF98C8BE149CC0AD00DA2A57 /* TileMap.png in Resources */ = {isa = PBXBuildFile; fileRef = DF98C8BC149CC0AD00DA2A57 /* TileMap.png */; };
 		DF98C8C2149CC23300DA2A57 /* TileSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8C1149CC23300DA2A57 /* TileSet.m */; };
+		DF98C8C5149CC34400DA2A57 /* SpriteSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8C4149CC34400DA2A57 /* SpriteSheet.m */; };
+		DF98C8C8149CC47400DA2A57 /* Layer.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8C7149CC47400DA2A57 /* Layer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,10 @@
 		DF98C8BC149CC0AD00DA2A57 /* TileMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileMap.png; sourceTree = "<group>"; };
 		DF98C8C0149CC23300DA2A57 /* TileSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileSet.h; sourceTree = "<group>"; };
 		DF98C8C1149CC23300DA2A57 /* TileSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileSet.m; sourceTree = "<group>"; };
+		DF98C8C3149CC34400DA2A57 /* SpriteSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteSheet.h; sourceTree = "<group>"; };
+		DF98C8C4149CC34400DA2A57 /* SpriteSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteSheet.m; sourceTree = "<group>"; };
+		DF98C8C6149CC47400DA2A57 /* Layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layer.h; sourceTree = "<group>"; };
+		DF98C8C7149CC47400DA2A57 /* Layer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Layer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,10 +283,14 @@
 		DF98C8BF149CC1D400DA2A57 /* TileManagement */ = {
 			isa = PBXGroup;
 			children = (
+				DF98C8C3149CC34400DA2A57 /* SpriteSheet.h */,
+				DF98C8C4149CC34400DA2A57 /* SpriteSheet.m */,
 				DF98C8B8149CAF9000DA2A57 /* TileMap.h */,
 				DF98C8B9149CAF9000DA2A57 /* TileMap.m */,
 				DF98C8C0149CC23300DA2A57 /* TileSet.h */,
 				DF98C8C1149CC23300DA2A57 /* TileSet.m */,
+				DF98C8C6149CC47400DA2A57 /* Layer.h */,
+				DF98C8C7149CC47400DA2A57 /* Layer.m */,
 			);
 			name = TileManagement;
 			sourceTree = "<group>";
@@ -358,6 +368,8 @@
 				8F362F2A106D320800AEE2AA /* TextureManager.m in Sources */,
 				DF98C8BA149CAF9000DA2A57 /* TileMap.m in Sources */,
 				DF98C8C2149CC23300DA2A57 /* TileSet.m in Sources */,
+				DF98C8C5149CC34400DA2A57 /* SpriteSheet.m in Sources */,
+				DF98C8C8149CC47400DA2A57 /* Layer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

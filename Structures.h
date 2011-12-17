@@ -52,3 +52,7 @@ typedef struct {
     GLuint textureName;
     NSUInteger renderIndex;
 } ImageDetails;
+
+
+#define kTile_Width 200
+#define kTile_Height 200

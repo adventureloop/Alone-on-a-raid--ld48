@@ -1,55 +1,68 @@
 //
 //  TileSet.m
-//  CH05_SLQTSOR_EXERCISE
+//  SLQTSOR
 //
-//  Created by Tom Jones on 17/12/2011.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Created by Michael Daley on 05/04/2009.
+//  Copyright 2009 Michael Daley. All rights reserved.
 //
 
 #import "TileSet.h"
+#import "SpriteSheet.h"
+#import "TextureManager.h"
 
 @implementation TileSet
 
--(id)initWithImagedNamed:(NSString *)aImageFileName 
-                    name:(NSString *)aName 
-               tileSetID:(int)aTileSetID
-                firstGID:(int)afirstGID 
-                tileSize:(CGSize)aSize 
-                 spacing:(int)aSpacing 
-                  margin:(int)aMargin
-{
-    if(self = [super init]) {
-        sharedTextureManager = [TextureManager sharedTextureManager];
-        
-        tiles = [[SpriteSheet spriteSheetForImageNamed:aImageFileName 
-                                            spriteSize:aSize 
-                                               spacing:aSpacing 
-                                                margin:aMargin 
-                                           imageFilter:GL_LINEAR] retain];
-        
-        tileSetID = aTileSetID;
-        name = aName;
-        firstGlobalID = afirstGID;
-        tileHeight = aSize.height;
-        tileWidth = aSize.width;
-        spacing = aSpacing;
-        margin = aMargin;
-        
-        horizontalTiles = tiles.horizSpriteCount;
-        verticalTiles = tiles.vertSpriteCount;
-        
-        lastGlobalID = tiles.horizSpriteCount * tiles.vertSpriteCount + firstGlobalID - 1;
-    }
-    return self;
+@synthesize tileSetID;
+@synthesize name;
+@synthesize firstGID;
+@synthesize lastGID;
+@synthesize tileWidth;
+@synthesize tileHeight;
+@synthesize spacing;
+@synthesize margin;
+@synthesize tiles;
+
+- (void)dealloc {
+	SLQLOG(@"INFO - TileSet: Deallocating");
+	if (tiles)
+		[tiles release];
+	[super dealloc];
 }
-
-
+- (id)initWithImageNamed:(NSString*)aImageFileName name:(NSString*)aTileSetName tileSetID:(int)tsID firstGID:(int)aFirstGlobalID tileSize:(CGSize)aTileSize spacing:(int)aSpacing margin:(int)aMargin {
+	self = [super init];
+	if (self != nil) {
+		
+		sharedTextureManager = [TextureManager sharedTextureManager];
+		
+		// Create a sprite sheet using the filename and type identified above
+        tiles = [[SpriteSheet spriteSheetForImageNamed:aImageFileName spriteSize:aTileSize spacing:aSpacing margin:aMargin imageFilter:GL_LINEAR] retain];
+		
+		// Set up the classes properties based on the info passed into the method
+		tileSetID = tsID;
+		name = aTileSetName;
+		firstGID = aFirstGlobalID;
+		tileWidth = aTileSize.width;
+		tileHeight = aTileSize.height;
+		spacing = aSpacing;
+		margin = aMargin;
+		
+		// Calculate the value for the remaining class propertie
+		horizontalTiles = tiles.horizSpriteCount;
+		verticalTiles = tiles.vertSpriteCount;
+		
+		// Calculate the lastGID for this tile set based on the number of sprites in the image
+		// and the firstGID
+		lastGID = horizontalTiles * verticalTiles + firstGID - 1;
+		
+	}
+	return self;
+}
 
 
 - (BOOL)containsGlobalID:(int)aGlobalID {
 	// If the global ID which has been passed is within the global IDs in this
 	// tileset then return YES
-	return (aGlobalID >= firstGlobalID) && (aGlobalID <= lastGlobalID);
+	return (aGlobalID >= firstGID) && (aGlobalID <= lastGID);
 }
 
 
@@ -61,4 +74,5 @@
 - (int)getTileY:(int)aTileID {
 	return aTileID / horizontalTiles;
 }
+
 @end
