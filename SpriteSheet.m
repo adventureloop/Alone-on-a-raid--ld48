@@ -51,7 +51,7 @@ static NSMutableDictionary *cachedSpriteSheets = nil;
 		cachedSpriteSheets = [[NSMutableDictionary alloc] init];
     
 	// If a sprite sheet created with the same filename is found then return the reference to it
-	if(cachedSpriteSheet = [cachedSpriteSheets objectForKey:aImageName])
+	if((cachedSpriteSheet = [cachedSpriteSheets objectForKey:aImageName]))
 		return cachedSpriteSheet;
 	
     // As we have not found a sprite sheet we need to create a new one
@@ -74,7 +74,7 @@ static NSMutableDictionary *cachedSpriteSheets = nil;
 		cachedSpriteSheets = [[NSMutableDictionary alloc] init];
 	
     // If a sprite sheet created with the same texture name is found then return the reference to it
-	if(cachedSpriteSheet = [cachedSpriteSheets objectForKey:aSheetKey])
+	if((cachedSpriteSheet = [cachedSpriteSheets objectForKey:aSheetKey]))
 		return cachedSpriteSheet;
 	
     // As we have not found a sprite sheet we need to create a new one
