@@ -1,6 +1,6 @@
 //
 //  Image.h
-//  CH05_SLQTSOR
+//  GLGamev2
 //
 //  Created by Michael Daley on 27/06/2009.
 //  Copyright 2009 Michael Daley. All rights reserved.

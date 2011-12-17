@@ -17,6 +17,8 @@
 	Image *myImage1;
 	ImageRenderManager *sharedImageRenderManager;
 	float scaleAmount;
+	CGPoint velocity;
+	CGPoint point;
 }
 
 @end

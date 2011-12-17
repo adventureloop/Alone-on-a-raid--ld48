@@ -34,17 +34,11 @@
 	[super dealloc];
 }
 
-////////////////////
-// Initialization
-
 - (id)initWithImage:(UIImage*)aImage filter:(GLenum)aFilter {
     
     self = [super init];
     if(self != nil) {
     
-        ////////////////////
-        // Loading the Image
-        
         // Create a variable which will store the CGImageRef from the image which has been passed in
         CGImageRef image;        
         
@@ -72,9 +66,6 @@
                 pixelFormat = kTexture2DPixelFormat_RGB565;
         } else  //NOTE: No colorspace means a mask image
             pixelFormat = kTexture2DPixelFormat_A8;
-        
-        ////////////////////
-        // Sizing the Image
         
         // Set the imageSize to the size of the image which has been passed in
         contentSize = CGSizeMake(CGImageGetWidth(image), CGImageGetHeight(image));
@@ -115,9 +106,6 @@
             contentSize.width *= 0.5;
             contentSize.height *= 0.5;
         }
-        
-        ////////////////////
-        // Generating Image Data
         
         // Based on the pixel format we have read in from the image we are processing, allocate memory to hold
         // an image the size of the newly calculated power of 2 width and height.  Also create a bitmap context
@@ -184,9 +172,6 @@
 			data = tempData;	
 		}
 
-        ////////////////////
-        // Generating a Texture Name
-        
         // Generate a new OpenGL texture name and bind to it
         glGenTextures(1, &name);
         glBindTexture(GL_TEXTURE_2D, name);

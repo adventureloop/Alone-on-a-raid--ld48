@@ -84,7 +84,7 @@
 	
 	if(updateIterations > (MAX_CYCLES_PER_FRAME * UPDATE_INTERVAL))
 		updateIterations = (MAX_CYCLES_PER_FRAME * UPDATE_INTERVAL);
-	
+
 	while (updateIterations >= UPDATE_INTERVAL) {
 		updateIterations -= UPDATE_INTERVAL;
 		
