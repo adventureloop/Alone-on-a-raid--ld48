@@ -34,7 +34,9 @@
 		DF3D7FE3149D5C0D0009AD6B /* StaticSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D7FE2149D5C0D0009AD6B /* StaticSprites.png */; };
 		DF3D7FE6149DE9050009AD6B /* EntityLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3D7FE5149DE9040009AD6B /* EntityLoader.m */; };
 		DF3D7FEC149E0C120009AD6B /* JoyPad.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D7FEB149E0C120009AD6B /* JoyPad.png */; };
-		DF3D7FEE149E0E800009AD6B /* SpriteMap.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D7FED149E0E800009AD6B /* SpriteMap.png */; };
+		DF3D7FF4149E245E0009AD6B /* SpriteMap.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D7FF3149E245E0009AD6B /* SpriteMap.png */; };
+		DF3D7FF6149E34FF0009AD6B /* PlayerSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D7FF5149E34FE0009AD6B /* PlayerSprite.png */; };
+		DF3D7FF9149E375C0009AD6B /* Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3D7FF8149E375B0009AD6B /* Animation.m */; };
 		DF98C8BA149CAF9000DA2A57 /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8B9149CAF9000DA2A57 /* TileMap.m */; };
 		DF98C8BE149CC0AD00DA2A57 /* TileMap.png in Resources */ = {isa = PBXBuildFile; fileRef = DF98C8BC149CC0AD00DA2A57 /* TileMap.png */; };
 		DF98C8C2149CC23300DA2A57 /* TileSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8C1149CC23300DA2A57 /* TileSet.m */; };
@@ -93,7 +95,10 @@
 		DF3D7FE4149DE9040009AD6B /* EntityLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityLoader.h; sourceTree = "<group>"; };
 		DF3D7FE5149DE9040009AD6B /* EntityLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityLoader.m; sourceTree = "<group>"; };
 		DF3D7FEB149E0C120009AD6B /* JoyPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JoyPad.png; sourceTree = "<group>"; };
-		DF3D7FED149E0E800009AD6B /* SpriteMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpriteMap.png; sourceTree = "<group>"; };
+		DF3D7FF3149E245E0009AD6B /* SpriteMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpriteMap.png; sourceTree = "<group>"; };
+		DF3D7FF5149E34FE0009AD6B /* PlayerSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerSprite.png; sourceTree = "<group>"; };
+		DF3D7FF7149E375B0009AD6B /* Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animation.h; sourceTree = "<group>"; };
+		DF3D7FF8149E375B0009AD6B /* Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animation.m; sourceTree = "<group>"; };
 		DF98C8B8149CAF9000DA2A57 /* TileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
 		DF98C8B9149CAF9000DA2A57 /* TileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 		DF98C8BC149CC0AD00DA2A57 /* TileMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileMap.png; sourceTree = "<group>"; };
@@ -289,10 +294,11 @@
 			isa = PBXGroup;
 			children = (
 				DF14D0DB149CFAE800FBA1D2 /* TestSprite.png */,
+				DF3D7FF3149E245E0009AD6B /* SpriteMap.png */,
 				DF3D7FE2149D5C0D0009AD6B /* StaticSprites.png */,
+				DF3D7FF5149E34FE0009AD6B /* PlayerSprite.png */,
 				DF3D7FEB149E0C120009AD6B /* JoyPad.png */,
 				DF0C3EF1149D24F200F47137 /* TileSet.png */,
-				DF3D7FED149E0E800009AD6B /* SpriteMap.png */,
 				DF98C8BC149CC0AD00DA2A57 /* TileMap.png */,
 				8F362F5F106D36A900AEE2AA /* knight.gif */,
 			);
@@ -321,6 +327,8 @@
 				DF3D7FDD149D38360009AD6B /* StaticEntity.m */,
 				DF3D7FDF149D38730009AD6B /* EnemyEntity.h */,
 				DF3D7FE0149D38730009AD6B /* EnemyEntity.m */,
+				DF3D7FF7149E375B0009AD6B /* Animation.h */,
+				DF3D7FF8149E375B0009AD6B /* Animation.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -393,7 +401,8 @@
 				DF0C3EF2149D24F200F47137 /* TileSet.png in Resources */,
 				DF3D7FE3149D5C0D0009AD6B /* StaticSprites.png in Resources */,
 				DF3D7FEC149E0C120009AD6B /* JoyPad.png in Resources */,
-				DF3D7FEE149E0E800009AD6B /* SpriteMap.png in Resources */,
+				DF3D7FF4149E245E0009AD6B /* SpriteMap.png in Resources */,
+				DF3D7FF6149E34FF0009AD6B /* PlayerSprite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +433,7 @@
 				DF3D7FDE149D38360009AD6B /* StaticEntity.m in Sources */,
 				DF3D7FE1149D38730009AD6B /* EnemyEntity.m in Sources */,
 				DF3D7FE6149DE9050009AD6B /* EntityLoader.m in Sources */,
+				DF3D7FF9149E375C0009AD6B /* Animation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

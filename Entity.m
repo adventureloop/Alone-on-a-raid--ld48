@@ -38,7 +38,7 @@
 
 -(void)render
 {
-    [image renderCenteredAtPoint:tileLocation];//tileMapPositionToPixelPosition(tileLocation) scale:scale rotation:rotation];
+    [image renderCenteredAtPoint:tileLocation scale:scale rotation:rotation];
 }
 
 

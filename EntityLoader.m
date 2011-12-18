@@ -92,10 +92,15 @@
         for(x = 0;x < width;x++) {
             byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
             
-            if(rawData[byteIndex] > 0 && rawData[byteIndex] < 16)
-                [entities addObject:[[Entity alloc] initWithTileLocation:CGPointMake((float)x, (float)y) 
-                                                                   image:[[sprites  spriteImageAtIndex:rawData[byteIndex]] retain]
-                                                                    type:rawData[byteIndex]] ];
+            if(rawData[byteIndex] > 0 && rawData[byteIndex] < 16) {
+                NSLog(@"Entity at (%d,%d)",x,y);
+                [entities addObject:[[Entity alloc] initWithTileLocation:CGPointMake((float)x * 100, (float)y * 100) 
+                                                                   image:[[sprites  spriteImageAtIndex:rawData[byteIndex]] retain]                                    
+                                                                    type:rawData[byteIndex]
+                                                                   scale:Scale2fMake(2.0, 2.0) 
+                                                                    rotation:0.0] ];
+                
+            }
             
         }
     }
