@@ -93,7 +93,7 @@
             byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
             
             if(rawData[byteIndex] > 0 && rawData[byteIndex] < 16)
-                [entities addObject:[[Entity alloc] initWithTileLocation:CGPointMake((float)50, (float)50) 
+                [entities addObject:[[Entity alloc] initWithTileLocation:CGPointMake((float)x, (float)y) 
                                                                    image:[[sprites  spriteImageAtIndex:rawData[byteIndex]] retain]
                                                                     type:rawData[byteIndex]] ];
             

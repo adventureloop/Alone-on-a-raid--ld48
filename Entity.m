@@ -14,6 +14,7 @@
 -(id)initWithTileLocation:(CGPoint)tileLoc image:(Image *)aImage type:(int)aType
 {
     if(self = [super init]) {
+        image = aImage;
         type = aType;
         tileLocation = tileLoc;
         scale = Scale2fMake(1.0, 1.0);
@@ -26,6 +27,7 @@
 {
     
     if(self = [super init]) {
+        image = aImage;
         type = aType;
         tileLocation = tileLoc;
         scale = aScale;
@@ -36,7 +38,7 @@
 
 -(void)render
 {
-    [image renderCenteredAtPoint:tileMapPositionToPixelPosition(tileLocation) scale:scale rotation:rotation];
+    [image renderCenteredAtPoint:tileLocation];//tileMapPositionToPixelPosition(tileLocation) scale:scale rotation:rotation];
 }
 
 

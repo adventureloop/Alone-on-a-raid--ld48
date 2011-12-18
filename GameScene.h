@@ -8,6 +8,7 @@
 
 #import "AbstractScene.h"
 #import "TileMap.h"
+#import "Entity.h"
 
 
 @class Image;
@@ -34,6 +35,8 @@
     TileMap *tileMap;
     
     NSArray *staticEntities;
+    
+    Entity *player;
 }
 
 @end

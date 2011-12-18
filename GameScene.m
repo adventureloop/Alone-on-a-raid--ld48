@@ -41,6 +41,13 @@
         
         staticEntities = [load entities];
         
+        
+        player = [[Entity alloc]initWithTileLocation:CGPointMake(100.0, 100.0) 
+                                                       image:[spriteSheet spriteImageAtIndex:13] 
+                                                        type:1
+                                                       scale:Scale2fMake(2.0, 2.0)
+                                                    rotation:0.0];
+        
 		// Create an image using the knight.gif image file
 		myImage = [[Image alloc] initWithImageNamed:@"TileMap.png" filter:GL_LINEAR];
 		// Set the color of the image we have just created
@@ -97,14 +104,18 @@
 	// Ask the ImageRenderManager to render the images on its render queue
     [tileMap renderLayer:0 mapx:0 mapy:0 width:15 height:15 useBlending:NO];
     
+    [sharedImageRenderManager renderImages];
+    
     for(Entity *e in staticEntities)
         [e render];
     
 	// Render myImage based on the point calculated in the update method
 	//[myImage renderCenteredAtPoint:tileMapPositionToPixelPosition(point)];
     
+
     [building renderCenteredAtPoint:point scale:Scale2fMake(2.0, 2.0) rotation:0.0];
-    
+
+        [player render];
     [sharedImageRenderManager renderImages];
     glPopMatrix();
     
