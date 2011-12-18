@@ -39,8 +39,6 @@
 
 -(void)render
 {
-   // NSLog(@"Player at %f %f",tileLocation.x,tileLocation.y);
-    //drawRect(CGRectMake(tileLocation.x, tileLocation.y - 20, size.width, size.width));
     drawRect([self collisionBounds]);
     [[animation frameForDirection:direction moving:moving] renderAtPoint:tileLocation scale:Scale2fMake(1.0, 1.0) rotation:-90.0];
     moving = NO;

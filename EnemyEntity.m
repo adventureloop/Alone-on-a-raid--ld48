@@ -16,7 +16,7 @@
 {
     if(self = [super initWithTileLocation:tileLoc spriteSheet:sheet]) {
         health = 1.0;
-        playerSpeed = 2.0;
+        playerSpeed = 1.0;
     }
     return self;
 }
@@ -29,7 +29,7 @@
  
     [self attackPlayer:player];
     
-    int speed = aDelta * playerSpeed + playerSpeed;
+    int speed = (aDelta * playerSpeed) + playerSpeed;
     if(moving)
         switch (direction) {
             case UP:
@@ -53,23 +53,35 @@
 
 -(void)attackPlayer:(Entity *)player
 {
-    int enX = [player collisionBounds].origin.x;
-    int enY = [player collisionBounds].origin.y;
+    int enX = [player collisionBounds].origin.x + 5;
+    int enY = [player collisionBounds].origin.y + 12;
     
     int xdif = tileLocation.x - enX;
     int ydif = tileLocation.y - enY;
     
-    if(abs(ydif) > abs(xdif))
+    
+    //if(xdif < 10 && ydif < 10)
+      //  return;
+    
+    if(xdif > 100 && ydif > 100)
+        return;
+    
+    moving = NO;
+    
+    if(abs(ydif) > abs(xdif)) {
         if(ydif > 0)
             direction = RIGHT;
         else
             direction = LEFT;
-    else
+        moving = YES;
+    } else {
         if(xdif > 0)
             direction = DOWN;
         else
             direction = UP;
+        moving = YES;
+    }
     
-    moving = YES;
+
 }
 @end

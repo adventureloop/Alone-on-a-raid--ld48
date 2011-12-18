@@ -24,6 +24,10 @@
 @interface GameScene : AbstractScene {
     Image *pausedImage;
     CGPoint pausedImageCenter;
+    Image *victoryImage;
+    Image *overImage;
+    
+    Image *restartImage;
     
     Image *joypad;
     Image *pauseButton;
