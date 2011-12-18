@@ -10,7 +10,6 @@
 
 @implementation Entity
 
-
 -(id)initWithTileLocation:(CGPoint)tileLoc image:(Image *)aImage type:(int)aType
 {
     if(self = [super init]) {
@@ -19,6 +18,10 @@
         tileLocation = tileLoc;
         scale = Scale2fMake(1.0, 1.0);
         rotation = 0.0;
+        
+        oldLocation = CGPointMake(tileLocation.x, tileLocation.y);
+        
+        size = CGSizeMake(40.0, 40.0);
     }
     return self;
 }
@@ -32,6 +35,8 @@
         tileLocation = tileLoc;
         scale = aScale;
         rotation = rotation;
+        
+        size = CGSizeMake(40.0, 40.0);
     }
     return self;
 }
@@ -41,9 +46,30 @@
     [image renderCenteredAtPoint:tileLocation scale:scale rotation:rotation];
 }
 
+-(void)undoMove
+{
+    tileLocation.x = oldLocation.x;
+    tileLocation.y = oldLocation.y;
+}
 
 -(void)updateWithDelta:(float)aDelta scene:(AbstractScene *)scene {}
--(void)checkForCollisionWithEntity:(AbstractScene *)entity{}
+-(BOOL)checkForCollisionWithEntity:(Entity *)entity
+{
+    CGPoint rectPoint = [entity tileLocation];
+    CGSize rectSize = [entity size];
+    
+    return CGRectIntersectsRect(CGRectMake(tileLocation.x, tileLocation.y, size.width, size.height),
+                                CGRectMake(rectPoint.x, rectPoint.y, rectSize.width, rectSize.height));
+}
+-(CGPoint)tileLocation
+{
+    return tileLocation;
+}
+
+-(CGSize)size
+{
+    return size;
+}
 
 -(CGRect)collisionBounds
 {

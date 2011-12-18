@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AbstractScene.h"
 #import "Image.h"
+#import "Animation.h"
 
 @interface Entity : NSObject
 {
@@ -16,6 +17,10 @@
     
     CGPoint tileLocation;
     CGPoint pixelLocation;
+    
+    CGSize size;
+    
+    CGPoint oldLocation;
     int type;
     
     int height;
@@ -25,10 +30,16 @@
     float rotation;
 }
 
+-(CGPoint)tileLocation;;
+-(CGSize)size;
+
+
 -(id)initWithTileLocation:(CGPoint )tileLoc image:(Image *)aImage type:(int)aType;
 -(id)initWithTileLocation:(CGPoint)tileLoc image:(Image *)aImage type:(int)aType scale:(Scale2f)aScale rotation:(float)aRotation;
--(void)updateWithDelta:(float)aDelta scene:(AbstractScene *)scene;
+-(void)updateWithDelta:(float)aDelta scene:(Entity *)scene;
 -(void)render;
--(void)checkForCollisionWithEntity:(AbstractScene *)entity;
+-(BOOL)checkForCollisionWithEntity:(AbstractScene *)entity;
 -(CGRect)collisionBounds;
+
+-(void)undoMove;
 @end

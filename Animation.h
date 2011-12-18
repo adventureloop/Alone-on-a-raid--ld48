@@ -18,10 +18,14 @@
     NSMutableArray *frames;
     
     SpriteSheet *sprites;
+    
+    int nextUp;
+    int nextDown;
+    int nextRight;
+    int nextLeft;
 }
 
 -(id)initWithSpriteSheet:(SpriteSheet *)aSheet;
-
--(void)addFrameForKey:(NSString *)key andIndex:(int)index;
--(Image *)frameForKey:(NSString *)key;
+-(Image *)frameForKey:(int)index;
+-(Image *)frameForDirection:(int)dir moving:(BOOL)moving;
 @end

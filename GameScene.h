@@ -9,6 +9,7 @@
 #import "AbstractScene.h"
 #import "TileMap.h"
 #import "Entity.h"
+#import "PlayerEntity.h"
 
 
 @class Image;
@@ -36,7 +37,7 @@
     
     NSArray *staticEntities;
     
-    Entity *player;
+    PlayerEntity *player;
 }
 
 @end

@@ -23,13 +23,13 @@
 		sharedImageRenderManager = [ImageRenderManager sharedImageRenderManager];
 		
         
-        SpriteSheet *spriteSheet = [[SpriteSheet alloc]initWithImageNamed:@"StaticSprites.png" 
+       /* SpriteSheet *spriteSheet = [[SpriteSheet alloc]initWithImageNamed:@"StaticSprites.png" 
                                                                spriteSize:CGSizeMake(32.0, 32.0)
                                                                   spacing:0
                                                                    margin:0 
                                                               imageFilter:GL_LINEAR];
         
-        building = [spriteSheet spriteImageAtCoords:CGPointMake(0, 0)];
+        building = [spriteSheet spriteImageAtCoords:CGPointMake(0, 0)];*/
         
         
        EntityLoader *load = [[EntityLoader alloc]initWithSpriteSheet:@"StaticSprites.png" 
@@ -42,11 +42,12 @@
         staticEntities = [load entities];
         
         
-        player = [[Entity alloc]initWithTileLocation:CGPointMake(100.0, 100.0) 
-                                                       image:[spriteSheet spriteImageAtIndex:13] 
-                                                        type:1
-                                                       scale:Scale2fMake(2.0, 2.0)
-                                                    rotation:0.0];
+        player = [[PlayerEntity alloc]initWithTileLocation:CGPointMake(100, 100) spriteSheet:
+                  [[SpriteSheet alloc] initWithImageNamed:@"PlayerSprite.png"
+                                                          spriteSize:CGSizeMake(32.0, 32.0) 
+                                                          spacing:0 
+                                                          margin:0 
+                                              imageFilter:GL_LINEAR]];
         
 		// Create an image using the knight.gif image file
 		myImage = [[Image alloc] initWithImageNamed:@"TileMap.png" filter:GL_LINEAR];
@@ -92,6 +93,10 @@
         point.y += (point.y > dest.y) ? -2.0 : 2.0;
     else
         point.y = dest.y;
+    
+    for(Entity *e in staticEntities)
+        if([player checkForCollisionWithEntity:e])
+            [player undoMove];
 }
 
 
@@ -109,13 +114,9 @@
     for(Entity *e in staticEntities)
         [e render];
     
-	// Render myImage based on the point calculated in the update method
-	//[myImage renderCenteredAtPoint:tileMapPositionToPixelPosition(point)];
+
+    [player render];
     
-
-    [building renderCenteredAtPoint:point scale:Scale2fMake(2.0, 2.0) rotation:0.0];
-
-        [player render];
     [sharedImageRenderManager renderImages];
     glPopMatrix();
     
@@ -132,22 +133,26 @@
         
         if(pos.x < 60) {
             NSLog(@"Down");
-            cameraCenter.x -= 20;
+            cameraCenter.x -= 5;
+            [player moveDown];
         }
         
         if(pos.x > 110 && pos.x < 160) {
             NSLog(@"Up");
-            cameraCenter.x += 20;
+            cameraCenter.x += 5;
+            [player moveUp];
         }
         
         if(pos.y < 50) {
             NSLog(@"Left");
-            cameraCenter.y += 20;
+            cameraCenter.y += 5;
+            [player moveLeft];
         }
         
         if(pos.y > 80 && pos.y < 130) {
             NSLog(@"Right");
-            cameraCenter.y -= 20;
+            cameraCenter.y -= 5;
+            [player moveRight];
         }
     }
 
@@ -155,7 +160,6 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event view:(UIView *)aView
 {
-    
     for(UITouch *touch in touches) {
         NSLog(@"Touched at %@",touch);
         
@@ -163,24 +167,29 @@
         
         if(pos.x < 60) {
             NSLog(@"Down");
-            cameraCenter.x -= 20;
+            cameraCenter.x -= 5;
+            [player moveDown];
         }
         
         if(pos.x > 110 && pos.x < 160) {
             NSLog(@"Up");
-            cameraCenter.x += 20;
+            cameraCenter.x += 5;
+            [player moveUp];
         }
         
         if(pos.y < 50) {
             NSLog(@"Left");
-            cameraCenter.y += 20;
+            cameraCenter.y += 5;
+            [player moveLeft];
         }
         
         if(pos.y > 80 && pos.y < 130) {
             NSLog(@"Right");
-            cameraCenter.y -= 20;
+            cameraCenter.y -= 5;
+            [player moveRight];
         }
     }
+
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event view:(UIView *)aView
