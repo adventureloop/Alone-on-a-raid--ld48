@@ -15,6 +15,7 @@
 @interface GameScene : AbstractScene {
 	float transY;
 	Image *myImage;
+    Image *building;
     
 	ImageRenderManager *sharedImageRenderManager;
 	float scaleAmount;

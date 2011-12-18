@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "Image.h"
 #import "ImageRenderManager.h"
+#import "SpriteSheet.h"
 
 @implementation GameScene
 
@@ -20,6 +21,16 @@
 		// Grab a reference to the ImageRenderManager
 		sharedImageRenderManager = [ImageRenderManager sharedImageRenderManager];
 		
+        
+        SpriteSheet *spriteSheet = [[SpriteSheet alloc]initWithImageNamed:@"StaticSprites.png" 
+                                                               spriteSize:CGSizeMake(16.0, 16.0)
+                                                                  spacing:0
+                                                                   margin:0 
+                                                              imageFilter:GL_LINEAR];
+        
+        building = [spriteSheet spriteImageAtCoords:CGPointMake(0, 0)];
+        
+        
 		// Create an image using the knight.gif image file
 		myImage = [[Image alloc] initWithImageNamed:@"TileMap.png" filter:GL_LINEAR];
 		// Set the color of the image we have just created
@@ -61,7 +72,9 @@
     [tileMap renderLayer:0 mapx:0 mapy:0 width:8 height:8 useBlending:YES];
     
 	// Render myImage based on the point calculated in the update method
-	[myImage renderCenteredAtPoint:tileMapPositionToPixelPosition(point)];
+	//[myImage renderCenteredAtPoint:tileMapPositionToPixelPosition(point)];
+    
+    [building renderCenteredAtPoint:point];
 
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
