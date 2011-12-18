@@ -151,6 +151,13 @@ static NSMutableDictionary *cachedSpriteSheets = nil;
 
 }
 
+
+- (Image*)spriteImageAtIndex:(NSInteger)index
+{
+    return [cachedSprites objectAtIndex:index];
+}
+
+
 @end
 
 @implementation SpriteSheet (Private)
@@ -190,7 +197,6 @@ static NSMutableDictionary *cachedSpriteSheets = nil;
 		}
 	}
 }
-
 @end
 
 

@@ -62,5 +62,8 @@
 // Returns an Image which represents the sprite at the given coordinates
 - (Image*)spriteImageAtCoords:(CGPoint)aPoint;
 
+//Return an image as given index
+- (Image*)spriteImageAtIndex:(NSInteger)index;
+
 
 @end

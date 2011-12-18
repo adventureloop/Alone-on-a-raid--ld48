@@ -11,7 +11,7 @@
 @implementation Entity
 
 
--(id)initWithTileLocation:(CGPoint)tileLoc type:(int)aType
+-(id)initWithTileLocation:(CGPoint)tileLoc image:(Image *)aImage type:(int)aType
 {
     if(self = [super init]) {
         type = aType;
@@ -20,7 +20,12 @@
     return self;
 }
 
--(void)render{}
+-(void)render
+{
+    [image renderCenteredAtPoint:tileMapPositionToPixelPosition(tileLocation)];
+}
+
+
 -(void)updateWithDelta:(float)aDelta scene:(AbstractScene *)scene {}
 -(void)checkForCollisionWithEntity:(AbstractScene *)entity{}
 
