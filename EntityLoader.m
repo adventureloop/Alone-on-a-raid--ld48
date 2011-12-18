@@ -94,7 +94,7 @@
             
             if(rawData[byteIndex] > 0 && rawData[byteIndex] < 16) {
                 NSLog(@"Entity at (%d,%d)",x,y);
-                [entities addObject:[[Entity alloc] initWithTileLocation:CGPointMake((float)x * 100, (float)y * 100) 
+                [entities addObject:[[Entity alloc] initWithTileLocation:CGPointMake((float)x * 64, (float)y * 64) 
                                                                    image:[[sprites  spriteImageAtIndex:rawData[byteIndex]] retain]                                    
                                                                     type:rawData[byteIndex]
                                                                    scale:Scale2fMake(2.0, 2.0) 
