@@ -13,15 +13,21 @@
 #import "EnemyEntity.h"
 
 
+#define GAME_STATE_RUNNING 0
+#define GAME_STATE_PAUSED 1
+#define GAME_STATE_OVER 2
+#define GAME_STATE_WON 3
+
 @class Image;
 @class ImageRenderManager;
 
 @interface GameScene : AbstractScene {
-	float transY;
-	Image *myImage;
-    Image *building;
+    Image *pausedImage;
+    CGPoint pausedImageCenter;
     
     Image *joypad;
+    Image *pauseButton;
+    CGPoint pauseButtonCenter;
     CGPoint joypadCenter;
     CGSize joypadSize;
     CGRect joypadBounds;
@@ -31,10 +37,6 @@
     BOOL touching;
     
 	ImageRenderManager *sharedImageRenderManager;
-	float scaleAmount;
-	CGPoint velocity;
-	CGPoint point;
-    CGPoint dest;
     
     TileMap *tileMap;
     
@@ -44,7 +46,11 @@
     float playerHealth;
     Image *halfHeart;
     Image *heart;
+    
+    //Game states
+    int gamestate;
 }
 
 -(void)handleTouch:(CGPoint )pos;
+-(void)initGame;
 @end

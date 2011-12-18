@@ -66,9 +66,9 @@
             direction = LEFT;
     else
         if(xdif > 0)
-            direction = UP;
-        else
             direction = DOWN;
+        else
+            direction = UP;
     
     moving = YES;
 }

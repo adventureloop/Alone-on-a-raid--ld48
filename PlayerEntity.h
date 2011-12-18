@@ -21,13 +21,14 @@
     float playerSpeed;
 }
 
-
 -(id)initWithTileLocation:(CGPoint)tileLoc spriteSheet:(SpriteSheet *)sheet;
 -(void)updateWithDelta:(float)aDelta;
 -(void)moveUp;
 -(void)moveDown;
 -(void)moveRight;
 -(void)moveLeft;
+-(void)takeHit;
+-(BOOL)alive;
 
 @property (assign) float health;
 @end

@@ -13,6 +13,8 @@
 #import "SpriteSheet.h"
 #import "EntityLoader.h"
 
+#include <stdlib.h>
+
 @implementation GameScene
 
 - (id) init
@@ -21,15 +23,6 @@
 	if (self != nil) {
 		// Grab a reference to the ImageRenderManager
 		sharedImageRenderManager = [ImageRenderManager sharedImageRenderManager];
-		
-        
-       /* SpriteSheet *spriteSheet = [[SpriteSheet alloc]initWithImageNamed:@"StaticSprites.png" 
-                                                               spriteSize:CGSizeMake(32.0, 32.0)
-                                                                  spacing:0
-                                                                   margin:0 
-                                                              imageFilter:GL_LINEAR];
-        
-        building = [spriteSheet spriteImageAtCoords:CGPointMake(0, 0)];*/
         
         
        EntityLoader *load = [[EntityLoader alloc]initWithSpriteSheet:@"StaticSprites.png" 
@@ -40,41 +33,8 @@
                                                             tileWidth:32];
         
         staticEntities = [load entities];
-        
-        
-        enemy = [[NSMutableArray alloc]init];
-        [enemy addObject:[[EnemyEntity alloc]initWithTileLocation:CGPointMake(110, 110) spriteSheet:
-                          [[SpriteSheet alloc] initWithImageNamed:@"EnemySprite.png"
-                                                       spriteSize:CGSizeMake(32.0, 32.0) 
-                                                          spacing:0 
-                                                           margin:0 
-                                                      imageFilter:GL_LINEAR]] ];
-        
-        
-        player = [[PlayerEntity alloc]initWithTileLocation:CGPointMake(100, 100) spriteSheet:
-                  [[SpriteSheet alloc] initWithImageNamed:@"PlayerSprite.png"
-                                                          spriteSize:CGSizeMake(32.0, 32.0) 
-                                                          spacing:0 
-                                                          margin:0 
-                                              imageFilter:GL_LINEAR]];
-        
-		// Create an image using the knight.gif image file
-		myImage = [[Image alloc] initWithImageNamed:@"TileMap.png" filter:GL_LINEAR];
-		// Set the color of the image we have just created
-		myImage.color = Color4fMake(1.0, 0.5, 0.5, 0.75);
-        myImage.scale = Scale2fMake(20.0, 20.0);
-        
-		// Set the initial scale amount
-		scaleAmount = 40;
-		// Set the velocity of the moving image.  This will cause the image to move 50 pixels per second
-		velocity = CGPointMake(50, 50);
-		// Set the initial position
-		point = CGPointMake(220, 220);
-        dest = CGPointMake(220, 220);
-        
+       
         tileMap = [[TileMap alloc] initWithFileName:@"TileMap.png"];
-        
-        myImage.rotation = myImage.rotation = -90;
         
         cameraCenter = CGPointMake(100,100);
         
@@ -89,6 +49,13 @@
 								  joypadSize.height * 2);
         touching = NO;
         
+        pauseButton = [[Image alloc] initWithImageNamed:@"PauseButton.png" filter:GL_LINEAR];
+        
+        pauseButtonCenter = CGPointMake(10, 30);
+        
+        pausedImage = [[Image alloc] initWithImageNamed:@"Paused.png" filter:GL_LINEAR];
+        
+        pausedImageCenter = CGPointMake(100, 500);
         
         SpriteSheet *spriteSheet = [[SpriteSheet alloc]initWithImageNamed:@"Hearts.png" 
                                                                spriteSize:CGSizeMake(64.0, 64.0)
@@ -100,31 +67,74 @@
         
         halfHeart = [spriteSheet spriteImageAtIndex:1];
         heart = [spriteSheet spriteImageAtIndex:0];
+        
+        gamestate = GAME_STATE_PAUSED;
 	}
 	return self;
 }
 
+-(void)initGame
+{
+    if(enemy == nil)
+        enemy = [[NSMutableArray alloc]init];
+    else if([enemy count] > 0)
+        [enemy removeAllObjects];
+    [enemy addObject:[[EnemyEntity alloc]initWithTileLocation:CGPointMake(250, 250) spriteSheet:
+                      [[SpriteSheet alloc] initWithImageNamed:@"EnemySprite.png"
+                                                   spriteSize:CGSizeMake(32.0, 32.0) 
+                                                      spacing:0 
+                                                       margin:0 
+                                                  imageFilter:GL_LINEAR]] ];
+    if(player != nil)
+        [player release];
+    player = [[PlayerEntity alloc]initWithTileLocation:CGPointMake(350, 350) spriteSheet:
+              [[SpriteSheet alloc] initWithImageNamed:@"PlayerSprite.png"
+                                           spriteSize:CGSizeMake(32.0, 32.0) 
+                                              spacing:0 
+                                               margin:0 
+                                          imageFilter:GL_LINEAR]];
+    
+    gamestate = GAME_STATE_RUNNING;
+}
 - (void)updateSceneWithDelta:(float)aDelta 
 {
     if(touching)
         [self handleTouch:touchLocation];
     
+    if(![player alive])
+        gamestate = GAME_STATE_OVER;
+    
+    if(gamestate == GAME_STATE_PAUSED) 
+        return;    
+    
     [player updateWithDelta:aDelta];
+    
+    if(![player alive])
+        gamestate = GAME_STATE_OVER;
+    
+    if([enemy count] == 0)
+        gamestate = GAME_STATE_WON;
     
     for(Entity *e in staticEntities)
         if([player checkForCollisionWithEntity:e])
             [player undoMove];
     
-    for(EnemyEntity *e in enemy)
-        if([player checkForCollisionWithEntity:e]) {
-            [player undoMove];
-            playerHealth -= 0.5;
+    for(EnemyEntity *e in enemy) {
+        [e updateWithDelta:aDelta player:player];
+        if([e alive]){
+             if([player checkForCollisionWithEntity:e]){
+                [player undoMove];            
+                [e takeHit];
+                if(arc4random() % 100 > 66)
+                    [player takeHit];
+            }
         }
+    }
 }
 
 
-- (void)renderScene {
-    
+- (void)renderScene 
+{
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
     
@@ -141,7 +151,8 @@
         [e render];
     
     for(EnemyEntity *e in enemy)
-        [e render];
+        if([e alive])
+            [e render];
     
     
     [player render];
@@ -149,17 +160,39 @@
     [sharedImageRenderManager renderImages];
     glPopMatrix();
     
-    [joypad renderCenteredAtPoint:joypadCenter];
+    //Draw the paused UI if needed
     
-    //Draw the players healt
-    float tmpHealth = playerHealth;
-    int ypos = 350;
-    while(tmpHealth-- >= 1) {
-        [heart renderCenteredAtPoint:CGPointMake(64, ypos) scale:Scale2fMake(0.5, 0.5) rotation:-90.0];
-        ypos -= 30;
+   /* if(gamestate == GAME_STATE_PAUSED) {        
+        
+        return;
+    }*/
+    
+    switch (gamestate) {
+        case GAME_STATE_PAUSED:
+            [pausedImage renderAtPoint:pausedImageCenter scale:Scale2fMake(4.0, 4.0) rotation:-90.0];
+            [sharedImageRenderManager renderImages];
+            break;
+            
+        case GAME_STATE_OVER:
+            break;
+        case GAME_STATE_WON:
+            break;
+
+        case GAME_STATE_RUNNING:
+            [joypad renderCenteredAtPoint:joypadCenter];
+            [pauseButton renderAtPoint:pauseButtonCenter scale:Scale2fMake(0.4, 0.4) rotation:-90.0];
+            
+            //Draw the players healt
+            float tmpHealth = [player health];
+            int ypos = 350;
+            while(tmpHealth-- >= 1) {
+                [heart renderCenteredAtPoint:CGPointMake(64, ypos) scale:Scale2fMake(0.5, 0.5) rotation:-90.0];
+                ypos -= 30;
+            }
+            break;
+        default:
+            break;
     }
-   // if(tmpHealth != 0)
-     //   [halfHeart renderCenteredAtPoint:CGPointMake(64, ypos) scale:Scale2fMake(0.5, 0.5) rotation:-90.0 ];
     
     
 	[sharedImageRenderManager renderImages];
@@ -194,6 +227,17 @@
 
 -(void)handleTouch:(CGPoint)pos
 {
+    if(gamestate == GAME_STATE_PAUSED)
+        gamestate = GAME_STATE_RUNNING;
+    
+    NSLog(@"Touched at (%f,%f)",pos.x,pos.y);
+    if(pos.y > 400 && pos.x < 50) {
+        NSLog(@"Pausing game");
+        gamestate = GAME_STATE_PAUSED;
+        return;
+    }
+        
+    
 
     if(pos.x < 60) 
         [player moveDown];

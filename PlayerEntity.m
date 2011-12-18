@@ -96,4 +96,16 @@
     direction = LEFT;
     moving = YES;
 }
+
+-(void)takeHit
+{
+    health -= 0.5;
+}
+
+-(BOOL)alive
+{
+    if(health > 0)
+        return YES;
+    return NO;
+}
 @end
