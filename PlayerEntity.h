@@ -17,11 +17,12 @@
     
     int direction;
     BOOL moving;
+    float playerSpeed;
 }
 
 
 -(id)initWithTileLocation:(CGPoint)tileLoc spriteSheet:(SpriteSheet *)sheet;
-
+-(void)updateWithDelta:(float)aDelta;
 -(void)moveUp;
 -(void)moveDown;
 -(void)moveRight;

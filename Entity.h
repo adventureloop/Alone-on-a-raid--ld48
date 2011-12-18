@@ -10,6 +10,7 @@
 #import "AbstractScene.h"
 #import "Image.h"
 #import "Animation.h"
+#import "Primitives.h"
 
 @interface Entity : NSObject
 {
@@ -38,7 +39,7 @@
 -(id)initWithTileLocation:(CGPoint)tileLoc image:(Image *)aImage type:(int)aType scale:(Scale2f)aScale rotation:(float)aRotation;
 -(void)updateWithDelta:(float)aDelta scene:(Entity *)scene;
 -(void)render;
--(BOOL)checkForCollisionWithEntity:(AbstractScene *)entity;
+-(BOOL)checkForCollisionWithEntity:(Entity *)entity;
 -(CGRect)collisionBounds;
 
 -(void)undoMove;

@@ -21,6 +21,9 @@
         
         oldLocation = CGPointMake(tileLocation.x, tileLocation.y);
         
+        width = 40.0;
+        height = 40.0;
+        
         size = CGSizeMake(40.0, 40.0);
     }
     return self;
@@ -36,6 +39,9 @@
         scale = aScale;
         rotation = rotation;
         
+        width = 40.0;
+        height = 40.0;
+        
         size = CGSizeMake(40.0, 40.0);
     }
     return self;
@@ -43,6 +49,7 @@
 
 -(void)render
 {
+    drawRect([self collisionBounds]);
     [image renderCenteredAtPoint:tileLocation scale:scale rotation:rotation];
 }
 
@@ -58,8 +65,7 @@
     CGPoint rectPoint = [entity tileLocation];
     CGSize rectSize = [entity size];
     
-    return CGRectIntersectsRect(CGRectMake(tileLocation.x, tileLocation.y, size.width, size.height),
-                                CGRectMake(rectPoint.x, rectPoint.y, rectSize.width, rectSize.height));
+    return CGRectIntersectsRect([self collisionBounds],[entity collisionBounds]);
 }
 -(CGPoint)tileLocation
 {
@@ -73,6 +79,6 @@
 
 -(CGRect)collisionBounds
 {
-    return CGRectMake(tileLocation.x, tileLocation.y, width, height);
+    return CGRectMake(tileLocation.x - 20, tileLocation.y - 20, width, height);
 }
 @end

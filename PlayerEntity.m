@@ -19,48 +19,77 @@
         
         moving = NO;
         direction = DOWN;
+        
+        playerSpeed = 2.0;
+        width = 10.0;
+        height = 10.0;
+        size = CGSizeMake(10.0, 10.0);
     }
     return self;
 }
 
+
+-(CGRect)collisionBounds
+{
+    return CGRectMake(tileLocation.x, tileLocation.y - 20, width, height);
+}
+
 -(void)render
 {
+   // NSLog(@"Player at %f %f",tileLocation.x,tileLocation.y);
+    //drawRect(CGRectMake(tileLocation.x, tileLocation.y - 20, size.width, size.width));
+    drawRect([self collisionBounds]);
     [[animation frameForDirection:direction moving:moving] renderAtPoint:tileLocation scale:Scale2fMake(1.0, 1.0) rotation:-90.0];
     moving = NO;
 }
 
--(void)moveUp
+-(void)updateWithDelta:(float)aDelta
 {
     oldLocation.x = tileLocation.x;
+    oldLocation.y = tileLocation.y;
     
-    tileLocation.x += 5;
+    int speed = aDelta * playerSpeed + playerSpeed;
+    if(moving)
+    switch (direction) {
+        case UP:
+            tileLocation.x += speed;
+            break;
+        case DOWN:
+            tileLocation.x -= speed;
+            break;
+            
+        case LEFT:
+            tileLocation.y += speed;
+            break;
+            
+        case RIGHT:
+            tileLocation.y -= speed;
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)moveUp
+{
     direction = UP;
     moving = YES;
 }
 
 -(void)moveDown
 {
-    oldLocation.x = tileLocation.x;
-    
-    tileLocation.x -= 5;
     direction = DOWN;
     moving = YES;
 }
 
 -(void)moveRight
 {
-    oldLocation.y = tileLocation.y;
-    
-    tileLocation.y -= 5;
     direction = RIGHT;
     moving = YES;
 }
 
 -(void)moveLeft
 {
-    oldLocation.y = tileLocation.y;
-    
-    tileLocation.y += 5;
     direction = LEFT;
     moving = YES;
 }

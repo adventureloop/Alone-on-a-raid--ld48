@@ -78,21 +78,17 @@
 								  joypadCenter.y - joypadSize.height, 
 								  joypadSize.width * 2, 
 								  joypadSize.height * 2);
+        touching = NO;
 	}
 	return self;
 }
 
 - (void)updateSceneWithDelta:(float)aDelta 
 {
-    if(point.x != dest.x)
-        point.x += (point.x > dest.x) ? -2.0 : 2.0;
-    else
-        point.x = dest.x;
-        
-    if(point.y != dest.y)
-        point.y += (point.y > dest.y) ? -2.0 : 2.0;
-    else
-        point.y = dest.y;
+    if(touching)
+        [self handleTouch:touchLocation];
+    
+    [player updateWithDelta:aDelta];
     
     for(Entity *e in staticEntities)
         if([player checkForCollisionWithEntity:e])
@@ -104,6 +100,9 @@
     
     glClear(GL_COLOR_BUFFER_BIT);
     glPushMatrix();
+    
+    cameraCenter = [player tileLocation];
+    
     glTranslatef(100 - cameraCenter.x,250 - cameraCenter.y, 0);
     
 	// Ask the ImageRenderManager to render the images on its render queue
@@ -127,77 +126,47 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event view:(UIView *)aView
 {
     for(UITouch *touch in touches) {
-        NSLog(@"Touched at %@",touch);
-        
-        CGPoint pos = [touch locationInView:aView];
-        
-        if(pos.x < 60) {
-            NSLog(@"Down");
-            cameraCenter.x -= 5;
-            [player moveDown];
-        }
-        
-        if(pos.x > 110 && pos.x < 160) {
-            NSLog(@"Up");
-            cameraCenter.x += 5;
-            [player moveUp];
-        }
-        
-        if(pos.y < 50) {
-            NSLog(@"Left");
-            cameraCenter.y += 5;
-            [player moveLeft];
-        }
-        
-        if(pos.y > 80 && pos.y < 130) {
-            NSLog(@"Right");
-            cameraCenter.y -= 5;
-            [player moveRight];
-        }
+        touchLocation = [touch locationInView:aView];
+        touching = YES;
     }
-
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event view:(UIView *)aView
 {
+    
     for(UITouch *touch in touches) {
-        NSLog(@"Touched at %@",touch);
-        
-        CGPoint pos = [touch locationInView:aView];
-        
-        if(pos.x < 60) {
-            NSLog(@"Down");
-            cameraCenter.x -= 5;
-            [player moveDown];
-        }
-        
-        if(pos.x > 110 && pos.x < 160) {
-            NSLog(@"Up");
-            cameraCenter.x += 5;
-            [player moveUp];
-        }
-        
-        if(pos.y < 50) {
-            NSLog(@"Left");
-            cameraCenter.y += 5;
-            [player moveLeft];
-        }
-        
-        if(pos.y > 80 && pos.y < 130) {
-            NSLog(@"Right");
-            cameraCenter.y -= 5;
-            [player moveRight];
-        }
+        touchLocation = [touch locationInView:aView];
+        touching = YES;
     }
-
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event view:(UIView *)aView
 {
+    touching = NO;
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event view:(UIView *)aView
 {
+    touching = NO;
 }
 
+-(void)handleTouch:(CGPoint)pos
+{
+
+    if(pos.x < 60) 
+        [player moveDown];
+    
+    
+    if(pos.x > 110 && pos.x < 160)
+        [player moveUp];
+    
+    
+    if(pos.y < 50)
+        [player moveLeft];
+    
+    
+    if(pos.y > 80 && pos.y < 130) 
+        [player moveRight];
+    
+}
 @end

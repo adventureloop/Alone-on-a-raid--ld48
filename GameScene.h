@@ -26,6 +26,8 @@
     CGRect joypadBounds;
     
     CGPoint cameraCenter;
+    CGPoint touchLocation;
+    BOOL touching;
     
 	ImageRenderManager *sharedImageRenderManager;
 	float scaleAmount;
@@ -40,4 +42,5 @@
     PlayerEntity *player;
 }
 
+-(void)handleTouch:(CGPoint )pos;
 @end
