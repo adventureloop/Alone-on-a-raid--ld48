@@ -16,13 +16,27 @@
     if(self = [super init]) {
         type = aType;
         tileLocation = tileLoc;
+        scale = Scale2fMake(1.0, 1.0);
+        rotation = 0.0;
+    }
+    return self;
+}
+
+-(id)initWithTileLocation:(CGPoint)tileLoc image:(Image *)aImage type:(int)aType scale:(Scale2f)aScale rotation:(float)aRotation
+{
+    
+    if(self = [super init]) {
+        type = aType;
+        tileLocation = tileLoc;
+        scale = aScale;
+        rotation = rotation;
     }
     return self;
 }
 
 -(void)render
 {
-    [image renderCenteredAtPoint:tileMapPositionToPixelPosition(tileLocation)];
+    [image renderCenteredAtPoint:tileMapPositionToPixelPosition(tileLocation) scale:scale rotation:rotation];
 }
 
 

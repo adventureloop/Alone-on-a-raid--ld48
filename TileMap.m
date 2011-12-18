@@ -26,9 +26,6 @@
 // Using the parsed tilemap data, generate a VBO that contains information on each tile
 // that is present in that layer.  These VBOs are then used to render layers as requested
 - (void)createLayerTileImages;
-
-// Parse the objects that have been defined on the map
-- (void)parseMapObjects:(int)value;
 @end
 
 #pragma mark -

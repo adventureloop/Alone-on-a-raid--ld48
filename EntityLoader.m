@@ -7,7 +7,6 @@
 //
 
 #import "EntityLoader.h"
-#import "Entity.h"
 
 @implementation EntityLoader
 -(id)initWithSpriteSheet:(NSString *)spriteSheet
@@ -38,6 +37,11 @@
     }
     
     return self;
+}
+
+-(NSArray *)entities
+{
+    return entities;
 }
 
 #pragma mark -Parsing Map File
@@ -89,8 +93,8 @@
             byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
             
             if(rawData[byteIndex] > 0 && rawData[byteIndex] < 16)
-                [entities addObject:[[Entity alloc] initWithTileLocation:CGPointMake(x, y) 
-                                                                   image:[[sprites  spriteImageAtIndex:rawData[byteIndex]] copy]
+                [entities addObject:[[Entity alloc] initWithTileLocation:CGPointMake((float)50, (float)50) 
+                                                                   image:[[sprites  spriteImageAtIndex:rawData[byteIndex]] retain]
                                                                     type:rawData[byteIndex]] ];
             
         }

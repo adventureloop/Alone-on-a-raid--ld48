@@ -9,6 +9,7 @@
 #import "AbstractScene.h"
 #import "TileMap.h"
 
+
 @class Image;
 @class ImageRenderManager;
 
@@ -17,6 +18,13 @@
 	Image *myImage;
     Image *building;
     
+    Image *joypad;
+    CGPoint joypadCenter;
+    CGSize joypadSize;
+    CGRect joypadBounds;
+    
+    CGPoint cameraCenter;
+    
 	ImageRenderManager *sharedImageRenderManager;
 	float scaleAmount;
 	CGPoint velocity;
@@ -24,6 +32,8 @@
     CGPoint dest;
     
     TileMap *tileMap;
+    
+    NSArray *staticEntities;
 }
 
 @end

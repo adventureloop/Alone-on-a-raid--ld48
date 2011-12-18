@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SpriteSheet.h"
+#import "Entity.h"
 
 @interface EntityLoader : NSObject
 {
@@ -26,4 +27,6 @@
 
 -(id)initWithSpriteSheet:(NSString *)spriteSheet mapFile:(NSString *)mapFile mapHeight:(int)aMapHeight mapWidth:(int)aMapWidth tileHeight:(int)aTileHeight tileWidth:(int)aTileWidth;
 -(void)parseMapFile:(NSString *)fileName;
+
+-(NSArray *)entities;
 @end

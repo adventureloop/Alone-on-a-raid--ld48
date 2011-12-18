@@ -32,6 +32,9 @@
 		DF3D7FDE149D38360009AD6B /* StaticEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3D7FDD149D38360009AD6B /* StaticEntity.m */; };
 		DF3D7FE1149D38730009AD6B /* EnemyEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3D7FE0149D38730009AD6B /* EnemyEntity.m */; };
 		DF3D7FE3149D5C0D0009AD6B /* StaticSprites.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D7FE2149D5C0D0009AD6B /* StaticSprites.png */; };
+		DF3D7FE6149DE9050009AD6B /* EntityLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3D7FE5149DE9040009AD6B /* EntityLoader.m */; };
+		DF3D7FEC149E0C120009AD6B /* JoyPad.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D7FEB149E0C120009AD6B /* JoyPad.png */; };
+		DF3D7FEE149E0E800009AD6B /* SpriteMap.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D7FED149E0E800009AD6B /* SpriteMap.png */; };
 		DF98C8BA149CAF9000DA2A57 /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8B9149CAF9000DA2A57 /* TileMap.m */; };
 		DF98C8BE149CC0AD00DA2A57 /* TileMap.png in Resources */ = {isa = PBXBuildFile; fileRef = DF98C8BC149CC0AD00DA2A57 /* TileMap.png */; };
 		DF98C8C2149CC23300DA2A57 /* TileSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8C1149CC23300DA2A57 /* TileSet.m */; };
@@ -48,7 +51,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* SLQTSORAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLQTSORAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* SLQTSORAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLQTSORAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* CH05_SLQTSOR_EXERCISE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CH05_SLQTSOR_EXERCISE.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Alone Raid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Alone Raid.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2514C26D10084DB100A42282 /* ES1Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ES1Renderer.h; sourceTree = "<group>"; };
 		2514C26E10084DB100A42282 /* ES1Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ES1Renderer.m; sourceTree = "<group>"; };
@@ -87,6 +90,10 @@
 		DF3D7FDF149D38730009AD6B /* EnemyEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyEntity.h; sourceTree = "<group>"; };
 		DF3D7FE0149D38730009AD6B /* EnemyEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyEntity.m; sourceTree = "<group>"; };
 		DF3D7FE2149D5C0D0009AD6B /* StaticSprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StaticSprites.png; sourceTree = "<group>"; };
+		DF3D7FE4149DE9040009AD6B /* EntityLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityLoader.h; sourceTree = "<group>"; };
+		DF3D7FE5149DE9040009AD6B /* EntityLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityLoader.m; sourceTree = "<group>"; };
+		DF3D7FEB149E0C120009AD6B /* JoyPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JoyPad.png; sourceTree = "<group>"; };
+		DF3D7FED149E0E800009AD6B /* SpriteMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpriteMap.png; sourceTree = "<group>"; };
 		DF98C8B8149CAF9000DA2A57 /* TileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
 		DF98C8B9149CAF9000DA2A57 /* TileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 		DF98C8BC149CC0AD00DA2A57 /* TileMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileMap.png; sourceTree = "<group>"; };
@@ -160,7 +167,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* CH05_SLQTSOR_EXERCISE.app */,
+				1D6058910D05DD3D006BFB54 /* Alone Raid.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -283,7 +290,9 @@
 			children = (
 				DF14D0DB149CFAE800FBA1D2 /* TestSprite.png */,
 				DF3D7FE2149D5C0D0009AD6B /* StaticSprites.png */,
+				DF3D7FEB149E0C120009AD6B /* JoyPad.png */,
 				DF0C3EF1149D24F200F47137 /* TileSet.png */,
+				DF3D7FED149E0E800009AD6B /* SpriteMap.png */,
 				DF98C8BC149CC0AD00DA2A57 /* TileMap.png */,
 				8F362F5F106D36A900AEE2AA /* knight.gif */,
 			);
@@ -302,6 +311,8 @@
 		DF3D7FD4149D2D5E0009AD6B /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				DF3D7FE4149DE9040009AD6B /* EntityLoader.h */,
+				DF3D7FE5149DE9040009AD6B /* EntityLoader.m */,
 				DF3D7FD6149D2D800009AD6B /* Entity.h */,
 				DF3D7FD7149D2D800009AD6B /* Entity.m */,
 				DF3D7FD9149D38250009AD6B /* PlayerEntity.h */,
@@ -346,7 +357,7 @@
 			);
 			name = CH05_SLQTSOR_EXERCISE;
 			productName = SLQTSOR;
-			productReference = 1D6058910D05DD3D006BFB54 /* CH05_SLQTSOR_EXERCISE.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* Alone Raid.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -381,6 +392,8 @@
 				DF14D0DC149CFAE900FBA1D2 /* TestSprite.png in Resources */,
 				DF0C3EF2149D24F200F47137 /* TileSet.png in Resources */,
 				DF3D7FE3149D5C0D0009AD6B /* StaticSprites.png in Resources */,
+				DF3D7FEC149E0C120009AD6B /* JoyPad.png in Resources */,
+				DF3D7FEE149E0E800009AD6B /* SpriteMap.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +423,7 @@
 				DF3D7FDB149D38250009AD6B /* PlayerEntity.m in Sources */,
 				DF3D7FDE149D38360009AD6B /* StaticEntity.m in Sources */,
 				DF3D7FE1149D38730009AD6B /* EnemyEntity.m in Sources */,
+				DF3D7FE6149DE9050009AD6B /* EntityLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,7 +442,7 @@
 				GCC_PREFIX_HEADER = CH05_SLQTSOR_EXERCISE_Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "CH05_SLQTSOR_EXERCISE-Info.plist";
-				PRODUCT_NAME = CH05_SLQTSOR_EXERCISE;
+				PRODUCT_NAME = "Alone Raid";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
@@ -443,7 +457,7 @@
 				GCC_PREFIX_HEADER = CH05_SLQTSOR_EXERCISE_Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				INFOPLIST_FILE = "CH05_SLQTSOR_EXERCISE-Info.plist";
-				PRODUCT_NAME = CH05_SLQTSOR_EXERCISE;
+				PRODUCT_NAME = "Alone Raid";
 			};
 			name = Release;
 		};

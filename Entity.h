@@ -20,9 +20,13 @@
     
     int height;
     int width;
+    
+    Scale2f scale;
+    float rotation;
 }
 
 -(id)initWithTileLocation:(CGPoint )tileLoc image:(Image *)aImage type:(int)aType;
+-(id)initWithTileLocation:(CGPoint)tileLoc image:(Image *)aImage type:(int)aType scale:(Scale2f)aScale rotation:(float)aRotation;
 -(void)updateWithDelta:(float)aDelta scene:(AbstractScene *)scene;
 -(void)render;
 -(void)checkForCollisionWithEntity:(AbstractScene *)entity;
