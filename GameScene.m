@@ -42,6 +42,15 @@
         staticEntities = [load entities];
         
         
+        enemy = [[NSMutableArray alloc]init];
+        [enemy addObject:[[EnemyEntity alloc]initWithTileLocation:CGPointMake(110, 110) spriteSheet:
+                          [[SpriteSheet alloc] initWithImageNamed:@"EnemySprite.png"
+                                                       spriteSize:CGSizeMake(32.0, 32.0) 
+                                                          spacing:0 
+                                                           margin:0 
+                                                      imageFilter:GL_LINEAR]] ];
+        
+        
         player = [[PlayerEntity alloc]initWithTileLocation:CGPointMake(100, 100) spriteSheet:
                   [[SpriteSheet alloc] initWithImageNamed:@"PlayerSprite.png"
                                                           spriteSize:CGSizeMake(32.0, 32.0) 
@@ -79,6 +88,18 @@
 								  joypadSize.width * 2, 
 								  joypadSize.height * 2);
         touching = NO;
+        
+        
+        SpriteSheet *spriteSheet = [[SpriteSheet alloc]initWithImageNamed:@"Hearts.png" 
+                                                               spriteSize:CGSizeMake(64.0, 64.0)
+                                                                  spacing:0
+                                                                   margin:0 
+                                                              imageFilter:GL_LINEAR];
+        
+        playerHealth = 5.0;
+        
+        halfHeart = [spriteSheet spriteImageAtIndex:1];
+        heart = [spriteSheet spriteImageAtIndex:0];
 	}
 	return self;
 }
@@ -93,6 +114,12 @@
     for(Entity *e in staticEntities)
         if([player checkForCollisionWithEntity:e])
             [player undoMove];
+    
+    for(EnemyEntity *e in enemy)
+        if([player checkForCollisionWithEntity:e]) {
+            [player undoMove];
+            playerHealth -= 0.5;
+        }
 }
 
 
@@ -113,13 +140,28 @@
     for(Entity *e in staticEntities)
         [e render];
     
-
+    for(EnemyEntity *e in enemy)
+        [e render];
+    
+    
     [player render];
     
     [sharedImageRenderManager renderImages];
     glPopMatrix();
     
     [joypad renderCenteredAtPoint:joypadCenter];
+    
+    //Draw the players healt
+    float tmpHealth = playerHealth;
+    int ypos = 350;
+    while(tmpHealth-- >= 1) {
+        [heart renderCenteredAtPoint:CGPointMake(64, ypos) scale:Scale2fMake(0.5, 0.5) rotation:-90.0];
+        ypos -= 30;
+    }
+   // if(tmpHealth != 0)
+     //   [halfHeart renderCenteredAtPoint:CGPointMake(64, ypos) scale:Scale2fMake(0.5, 0.5) rotation:-90.0 ];
+    
+    
 	[sharedImageRenderManager renderImages];
 }
 

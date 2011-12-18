@@ -7,9 +7,10 @@
 //
 
 #import "PlayerEntity.h"
-#import "AnimationHeader.h"
+
 
 @implementation PlayerEntity
+@synthesize health;
 
 -(id)initWithTileLocation:(CGPoint)tileLoc spriteSheet:(SpriteSheet *)sheet
 {
@@ -24,6 +25,8 @@
         width = 10.0;
         height = 10.0;
         size = CGSizeMake(10.0, 10.0);
+        
+        health = 5.0;
     }
     return self;
 }

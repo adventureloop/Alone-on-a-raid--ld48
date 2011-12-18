@@ -62,9 +62,6 @@
 -(void)updateWithDelta:(float)aDelta scene:(AbstractScene *)scene {}
 -(BOOL)checkForCollisionWithEntity:(Entity *)entity
 {
-    CGPoint rectPoint = [entity tileLocation];
-    CGSize rectSize = [entity size];
-    
     return CGRectIntersectsRect([self collisionBounds],[entity collisionBounds]);
 }
 -(CGPoint)tileLocation

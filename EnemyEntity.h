@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Entity.h"
+#import "PlayerEntity.h"
 
-@interface EnemyEntity : Entity
+@interface EnemyEntity : PlayerEntity
+-(void)updateWithDelta:(float)aDelta player:(Entity *)player;
+-(void)attackPlayer:(Entity *)player;
 
+@property (assign) float health;
 @end

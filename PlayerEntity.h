@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Entity.h"
 #import "Animation.h"
+#import "AnimationHeader.h"
 
 @interface PlayerEntity : Entity
 {
@@ -27,4 +28,6 @@
 -(void)moveDown;
 -(void)moveRight;
 -(void)moveLeft;
+
+@property (assign) float health;
 @end

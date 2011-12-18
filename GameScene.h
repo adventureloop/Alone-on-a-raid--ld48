@@ -10,6 +10,7 @@
 #import "TileMap.h"
 #import "Entity.h"
 #import "PlayerEntity.h"
+#import "EnemyEntity.h"
 
 
 @class Image;
@@ -38,8 +39,11 @@
     TileMap *tileMap;
     
     NSArray *staticEntities;
-    
+    NSMutableArray *enemy;
     PlayerEntity *player;
+    float playerHealth;
+    Image *halfHeart;
+    Image *heart;
 }
 
 -(void)handleTouch:(CGPoint )pos;
