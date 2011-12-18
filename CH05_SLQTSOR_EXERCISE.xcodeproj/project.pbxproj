@@ -40,6 +40,10 @@
 		DF3D8001149E680F0009AD6B /* Primitives.m in Sources */ = {isa = PBXBuildFile; fileRef = DF3D8000149E680F0009AD6B /* Primitives.m */; };
 		DF3D8003149E7AD00009AD6B /* Hearts.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D8002149E7AD00009AD6B /* Hearts.png */; };
 		DF3D8005149E84F10009AD6B /* EnemySprite.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D8004149E84F10009AD6B /* EnemySprite.png */; };
+		DF3D8007149E94230009AD6B /* Paused.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D8006149E94230009AD6B /* Paused.png */; };
+		DF3D8009149E94BC0009AD6B /* PauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D8008149E94BC0009AD6B /* PauseButton.png */; };
+		DF3D800B149E9F760009AD6B /* GameWon.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D800A149E9F750009AD6B /* GameWon.png */; };
+		DF3D800D149E9F7A0009AD6B /* GameOver.png in Resources */ = {isa = PBXBuildFile; fileRef = DF3D800C149E9F7A0009AD6B /* GameOver.png */; };
 		DF98C8BA149CAF9000DA2A57 /* TileMap.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8B9149CAF9000DA2A57 /* TileMap.m */; };
 		DF98C8BE149CC0AD00DA2A57 /* TileMap.png in Resources */ = {isa = PBXBuildFile; fileRef = DF98C8BC149CC0AD00DA2A57 /* TileMap.png */; };
 		DF98C8C2149CC23300DA2A57 /* TileSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DF98C8C1149CC23300DA2A57 /* TileSet.m */; };
@@ -107,6 +111,10 @@
 		DF3D8000149E680F0009AD6B /* Primitives.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Primitives.m; sourceTree = "<group>"; };
 		DF3D8002149E7AD00009AD6B /* Hearts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hearts.png; sourceTree = "<group>"; };
 		DF3D8004149E84F10009AD6B /* EnemySprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EnemySprite.png; sourceTree = "<group>"; };
+		DF3D8006149E94230009AD6B /* Paused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Paused.png; sourceTree = "<group>"; };
+		DF3D8008149E94BC0009AD6B /* PauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseButton.png; sourceTree = "<group>"; };
+		DF3D800A149E9F750009AD6B /* GameWon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameWon.png; sourceTree = "<group>"; };
+		DF3D800C149E9F7A0009AD6B /* GameOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameOver.png; sourceTree = "<group>"; };
 		DF98C8B8149CAF9000DA2A57 /* TileMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileMap.h; sourceTree = "<group>"; };
 		DF98C8B9149CAF9000DA2A57 /* TileMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileMap.m; sourceTree = "<group>"; };
 		DF98C8BC149CC0AD00DA2A57 /* TileMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TileMap.png; sourceTree = "<group>"; };
@@ -303,11 +311,15 @@
 		8F362F5E106D368200AEE2AA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DF3D8006149E94230009AD6B /* Paused.png */,
 				DF14D0DB149CFAE800FBA1D2 /* TestSprite.png */,
 				DF3D7FF3149E245E0009AD6B /* SpriteMap.png */,
+				DF3D8008149E94BC0009AD6B /* PauseButton.png */,
 				DF3D7FE2149D5C0D0009AD6B /* StaticSprites.png */,
+				DF3D800A149E9F750009AD6B /* GameWon.png */,
 				DF3D7FFD149E48B00009AD6B /* PlayerSprite.png */,
 				DF3D8002149E7AD00009AD6B /* Hearts.png */,
+				DF3D800C149E9F7A0009AD6B /* GameOver.png */,
 				DF3D8004149E84F10009AD6B /* EnemySprite.png */,
 				DF3D7FEB149E0C120009AD6B /* JoyPad.png */,
 				DF0C3EF1149D24F200F47137 /* TileSet.png */,
@@ -418,6 +430,10 @@
 				DF3D7FFE149E48B00009AD6B /* PlayerSprite.png in Resources */,
 				DF3D8003149E7AD00009AD6B /* Hearts.png in Resources */,
 				DF3D8005149E84F10009AD6B /* EnemySprite.png in Resources */,
+				DF3D8007149E94230009AD6B /* Paused.png in Resources */,
+				DF3D8009149E94BC0009AD6B /* PauseButton.png in Resources */,
+				DF3D800B149E9F760009AD6B /* GameWon.png in Resources */,
+				DF3D800D149E9F7A0009AD6B /* GameOver.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
