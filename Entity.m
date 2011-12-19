@@ -17,7 +17,7 @@
         type = aType;
         tileLocation = tileLoc;
         scale = Scale2fMake(1.0, 1.0);
-        rotation = 0.0;
+        rotation = -90.0;
         
         oldLocation = CGPointMake(tileLocation.x, tileLocation.y);
         
@@ -49,7 +49,7 @@
 
 -(void)render
 {
-    drawRect([self collisionBounds]);
+    //drawRect([self collisionBounds]);
     [image renderCenteredAtPoint:tileLocation scale:scale rotation:rotation];
 }
 

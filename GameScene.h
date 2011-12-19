@@ -17,6 +17,7 @@
 #define GAME_STATE_PAUSED 1
 #define GAME_STATE_OVER 2
 #define GAME_STATE_WON 3
+#define GAME_STATE_STARTING 4
 
 @class Image;
 @class ImageRenderManager;
@@ -26,8 +27,10 @@
     CGPoint pausedImageCenter;
     Image *victoryImage;
     Image *overImage;
+    Image *startingImage;
     
     Image *restartImage;
+    CGPoint restartButtonPoint;
     
     Image *joypad;
     Image *pauseButton;
@@ -43,6 +46,10 @@
 	ImageRenderManager *sharedImageRenderManager;
     
     TileMap *tileMap;
+    SpriteSheet *spriteSheet;
+    
+    Entity *powerup;
+    Entity *ship;
     
     NSArray *staticEntities;
     NSMutableArray *enemy;
@@ -53,6 +60,7 @@
     
     //Game states
     int gamestate;
+    int magicTouches;
 }
 
 -(void)handleTouch:(CGPoint )pos;

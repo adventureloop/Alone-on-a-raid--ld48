@@ -39,7 +39,7 @@
 
 -(void)render
 {
-    drawRect([self collisionBounds]);
+   // drawRect([self collisionBounds]);
     [[animation frameForDirection:direction moving:moving] renderAtPoint:tileLocation scale:Scale2fMake(1.0, 1.0) rotation:-90.0];
     moving = NO;
 }
@@ -97,7 +97,7 @@
 
 -(void)takeHit
 {
-    health -= 0.5;
+    health -= 0.2;
 }
 
 -(BOOL)alive

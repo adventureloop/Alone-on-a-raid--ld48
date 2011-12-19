@@ -304,8 +304,27 @@
                              tileID:rawData[byteIndex]
                            globalID:rawData[byteIndex] 
                               value:-1];
+            
+            collisionMap[x][y][0] = rawData[byteIndex];
         }
     }
     [layers addObject:currentLayer];
+}
+
+#pragma mark -Collison handling for tiles
+-(BOOL)canEntityEnterTileAtPoint:(CGPoint)point
+{
+  /*  if(point.x <= 0 || point.x <=0)
+        return YES;
+    if(point.x > (tileWidth * mapWidth) || point.y > (tileWidth * mapWidth))
+       return NO;
+    
+    
+    float xpos = point.x / tileWidth;
+    float ypos = point.y / tileHeight;
+    
+    if(collisionMap[(int)xpos][(int)ypos][0] > 1)
+        return YES;*/
+    return NO;
 }
 @end

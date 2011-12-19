@@ -64,6 +64,8 @@
 	int tile_x;
 	int tile_y;
     
+    int collisionMap[64][64][1];
+    
 }
 
 @property (nonatomic, readonly) NSMutableArray *tileSets;
@@ -100,4 +102,6 @@
 // If no match is found for the key then |aDefaultValue| is returned
 - (NSString*)tilePropertyForGlobalTileID:(int)aGlobalTileID key:(NSString*)aKey defaultValue:(NSString*)aDefaultValue;
 
+
+-(BOOL)canEntityEnterTileAtPoint:(CGPoint)point;
 @end

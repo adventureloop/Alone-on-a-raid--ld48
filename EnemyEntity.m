@@ -29,7 +29,7 @@
  
     [self attackPlayer:player];
     
-    int speed = (aDelta * playerSpeed) + playerSpeed;
+    int speed = ((aDelta * playerSpeed) + playerSpeed);
     if(moving)
         switch (direction) {
             case UP:
@@ -81,7 +81,5 @@
             direction = UP;
         moving = YES;
     }
-    
-
 }
 @end

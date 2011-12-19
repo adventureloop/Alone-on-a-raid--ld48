@@ -9,6 +9,8 @@
 #import "EntityLoader.h"
 
 @implementation EntityLoader
+@synthesize sprites;
+
 -(id)initWithSpriteSheet:(NSString *)spriteSheet
                  mapFile:(NSString *)mapFile
             mapHeight:(int)aMapHeight 

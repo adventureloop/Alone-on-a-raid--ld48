@@ -13,7 +13,7 @@
 @interface EntityLoader : NSObject
 {
     NSMutableArray *entities;
-    SpriteSheet *sprites;
+//    SpriteSheet *sprites;
     
     int pixelWidth;
     int pixelHeight;
@@ -29,4 +29,6 @@
 -(void)parseMapFile:(NSString *)fileName;
 
 -(NSArray *)entities;
+
+@property (copy,nonatomic) SpriteSheet *sprites;
 @end
